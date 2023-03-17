@@ -19,9 +19,13 @@ export default function Repositories() {
     api()
   }, []);
 
+  useEffect(() => {
+    const favoRepositories = repositories.filter(repo => repo.favorite);
+    document.title = `Favorites: ${favoRepositories.length}`;
+  },[repositories])
   const handleFavorite = (id: number) => {
     const newRepositories = repositories.map( repo => {
-      return repo.id === id ? { ...repo, favorite: true} : repo
+      return repo.id === id ? { ...repo, favorite: !repo.favorite} : repo
     });
 
     setRepositories(newRepositories);
@@ -34,9 +38,7 @@ export default function Repositories() {
         {repositories.map(repo => 
             <li key={repo.id}>
               {repo.name}
-              {repo.favorite ? <MdOutlineFavorite
-              /> : <MdOutlineFavoriteBorder   
-              onClick={() => handleFavorite(repo.id)}/>
+              {repo.favorite ? <MdOutlineFavorite className='ms-1 mb-1' onClick={() => handleFavorite(repo.id)}/> : <MdOutlineFavoriteBorder className='ms-1 mb-1' onClick={() => handleFavorite(repo.id)}/>
               }
             </li>
           

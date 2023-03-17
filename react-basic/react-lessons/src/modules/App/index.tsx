@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Location from '../Location';
 import Repositories from '../Repositories';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -48,7 +49,7 @@ function App() {
   return (
     <div className="App d-flex">
       <div className="col">
-        <h1 className='text-info mb-3'>Life Cycles:</h1>
+        <h1 className='text-info mb-3 mt-5'>Life Cycles:</h1>
         {posts.map(post => {
           return (
               <div className="col me-5 d-flex flex-column text-white" key={post.id}>
@@ -60,6 +61,7 @@ function App() {
         })}
       </div>
        <Repositories/>
+       <Location />
     </div>
   )
 }
