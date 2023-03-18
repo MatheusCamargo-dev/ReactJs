@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import fetchPosts from '../../utils/load-posts';
+import Post from '../Post';
 interface Post{
   id: number;
   title: string;
@@ -11,23 +13,14 @@ export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const loadPosts = async () => {
-    const dataPosts = await fetch('https://jsonplaceholder.typicode.com/posts') 
-    const data = await dataPosts.json();
-    const dataPhotos = await fetch('https://jsonplaceholder.typicode.com/photos') 
-    const photos = await dataPhotos.json();
-    const postAndPhotos = data.map((post: Post, index:number) => {
-      return { ...post, img: photos[index].url}
-    })
+
+    const postAndPhotos = await fetchPosts();
     setPosts(postAndPhotos);
   }
 
-  const loadPhotos = async () => {
-    
-  }
 
   useEffect(() => {
     loadPosts()
-    loadPhotos()
   }, []);
   
   return (
@@ -39,16 +32,8 @@ export default function Posts() {
         {
           posts ?
           posts.map((post: Post) => (
-            <div className="post bg-white">
-              <img src={post?.img} alt={post.title} className="w-100"/>
-              <div key={post.id} className=' text-dark p-2 text-left'>
-                <h1>{post.title}</h1>
-                <p>{post.body}</p>
-              </div>
-
-            </div>
+            <Post key={post.id} post={post}/>
           )) : null
-        
         }
       </div>
   )
