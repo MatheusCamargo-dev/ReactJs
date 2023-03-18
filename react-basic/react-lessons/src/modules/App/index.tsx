@@ -60,8 +60,6 @@ function App() {
           )
         })}
       </div>
-       <Repositories/>
-       <Location />
     </div>
   )
 }

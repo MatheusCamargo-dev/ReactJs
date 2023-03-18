@@ -7,6 +7,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Header from './modules/Header';
 import Posts from './modules/Posts';
 import Styles from './styles/Styles';
+import Repositories from './modules/Repositories';
+import Location from './modules/Location';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -15,6 +17,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/posts' element={<Posts />} />
+        <Route path='/repo' element={<Repositories />} />
+        <Route path='/location' element={<Location />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

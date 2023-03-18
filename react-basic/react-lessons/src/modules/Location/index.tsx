@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { MdOutlineFavorite, MdOutlineFavoriteBorder } from 'react-icons/md'
 
 interface Coordinates{
   latitude: number;
