@@ -9,6 +9,7 @@ import Posts from './modules/Posts';
 import Styles from './styles/Styles';
 import Repositories from './modules/Repositories';
 import Location from './modules/Location';
+import AnimesPosts from './modules/AnimesPosts';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/posts' element={<Posts />} />
         <Route path='/repo' element={<Repositories />} />
         <Route path='/location' element={<Location />} />
+        <Route path='/animes' element={<AnimesPosts />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

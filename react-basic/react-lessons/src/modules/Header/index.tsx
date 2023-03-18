@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {FaHome, FaGithub} from 'react-icons/fa';
 import {BsFillFileEarmarkPostFill} from 'react-icons/bs';
 import {GoLocation} from 'react-icons/go';
+import {Gi3DGlasses} from 'react-icons/gi';
 export default function Header() {
   
   return (
@@ -22,7 +23,7 @@ export default function Header() {
                       <Link className="nav-link text-white font-weight-bold" to="/posts"  aria-current="page">
                         <BsFillFileEarmarkPostFill size={18}/> Posts
                       </Link>
-                    </li>
+                    </li>                 
                     <li className="nav-item">
                       <Link className="nav-link text-white" to="/location"  aria-current="page">
                         <GoLocation /> Location
@@ -31,6 +32,11 @@ export default function Header() {
                     <li className="nav-item">
                       <Link className="nav-link text-white" to="/repo"  aria-current="page">
                         <FaGithub /> Repositories
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link text-white font-weight-bold" to="/animes"  aria-current="page">
+                        <Gi3DGlasses size={18}/> Animes
                       </Link>
                     </li>
                 </ul> 
