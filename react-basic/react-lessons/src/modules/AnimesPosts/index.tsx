@@ -3,6 +3,7 @@ import fetchAnimes from '../../utils/load-anime-posts';
 import Pagination from '../Pagination';
 import {FaSearch} from 'react-icons/fa'
 import Animes from '../Animes';
+import Search from '../Search';
 interface AttributesAnimes{
   id: number;
   titles: {en: string, en_jp: string, ja_jp: string};
@@ -11,6 +12,7 @@ interface AttributesAnimes{
 }
 interface Animes{
   attributes: AttributesAnimes;
+  id: number;
 }
 
 export default function AnimesPosts() {
@@ -28,12 +30,11 @@ export default function AnimesPosts() {
     setAllPosts(animes);
   }
 
-  const searchAnime = () => {
-    const text = inputSearch.current?.value.toLowerCase().replace(/\s+/g, '');
+  const searchAnime = (e: any) => {
+    const { value } = e.target;
+    const text = value.toLowerCase().replace(/\s+/g, '');
     setSearch(text);
-   
   }
-
   useEffect(() => {
      const request = async () => {
        const animes = await fetchAnimes(search);
@@ -55,15 +56,7 @@ export default function AnimesPosts() {
   
   return (
     <div className="posts-content w-100 vh-100 d-flex flex-column">
-        <h2 className='text-white text-center mt-3'>Search for animes:</h2>
-        <div className="input-group d-flex justify-content-center vh-0 mt-1">
-          <div className="form-outline" style={{ height: "38px" }}>
-            <input type="search" onBlur={searchAnime} ref={inputSearch} placeholder="Search..."className="form-control" style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}} key="form2" />
-          </div>
-          <button type="button" className="btn btn-primary btn-sm">
-            <FaSearch />
-          </button>
-        </div>
+        <Search text={'Search for animes:'} onBlurFunction={searchAnime} onKeyUpFunction={searchAnime} />
 
 
         <div className="col bg-dark w-100 text-white p-5" style={{
@@ -73,7 +66,7 @@ export default function AnimesPosts() {
           }}
         >
               {posts.map((post: Animes) => (
-                  <Animes key={post.attributes.id} post={post}/>
+                  <Animes key={post.id} post={post}/>
               ))}
         </div>
         

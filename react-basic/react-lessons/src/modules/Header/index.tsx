@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import {FaHome, FaGithub} from 'react-icons/fa';
 import {BsFillFileEarmarkPostFill} from 'react-icons/bs';
 import {GoLocation} from 'react-icons/go';
-import {Gi3DGlasses} from 'react-icons/gi';
+import {Gi3DGlasses, GiTomato} from 'react-icons/gi';
+import {MdMovieFilter} from 'react-icons/md';
 export default function Header() {
   
   return (
@@ -35,8 +36,13 @@ export default function Header() {
                       </Link>
                     </li>
                     <li className="nav-item">
+                      <Link className="nav-link text-white font-weight-bold" to="/pomodoro"  aria-current="page">
+                        <GiTomato size={18}/> Pomodoro
+                      </Link>
+                    </li>
+                    <li className="nav-item">
                       <Link className="nav-link text-white font-weight-bold" to="/animes"  aria-current="page">
-                        <Gi3DGlasses size={18}/> Animes
+                        <MdMovieFilter size={18}/> Animes
                       </Link>
                     </li>
                 </ul> 

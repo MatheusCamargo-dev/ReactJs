@@ -4,6 +4,7 @@ import fetchAnimes from '../../utils/load-anime-posts';
 import Pagination from '../Pagination';
 import Post from '../Post';
 import { FaSearch } from 'react-icons/fa';
+import Search from '../Search';
 interface Post{
   id: number;
   title: string;
@@ -53,15 +54,7 @@ export default function Posts() {
   }
   return (
     <div className="posts-content w-100 vh-100 d-flex flex-column">
-        <h2 className='text-white text-center mt-3'>Search for posts:</h2>
-        <div className="input-group d-flex justify-content-center vh-0 mt-1">
-          <div className="form-outline" style={{ height: "38px" }}>
-            <input type="search" value={search} onChange={handleChange} placeholder="Search..."className="form-control" style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}} key="form2" />
-          </div>
-          <button type="button" className="btn btn-primary btn-sm">
-            <FaSearch />
-          </button>
-        </div>
+        <Search text={'Search for posts:'} onChangeFunction={handleChange} onClickFunction={handleChange}/>
         <div className="col bg-dark w-100 text-white p-5" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
