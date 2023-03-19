@@ -21,7 +21,6 @@ export default function Repositories() {
 
   useEffect(() => {
     const favoRepositories = repositories.filter(repo => repo.favorite);
-    document.title = `Favorites: ${favoRepositories.length}`;
   },[repositories])
   const handleFavorite = (id: number) => {
     const newRepositories = repositories.map( repo => {

@@ -27,7 +27,7 @@ export default function Search(props: Props) {
     <>
       <h2 className='text-white text-center mt-3'>{text}</h2>
       <div className="input-group d-flex justify-content-center vh-0 mt-1">
-        <div className="form-outline" style={{ height: "39px" }}>
+        <div className="form-outline" style={{ height: "38px" }}>
           <input type="search" onBlur={handleBlur} onChange={handleChange} onKeyUp={handleKeyUp} placeholder="Search..."className="form-control" style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}} key="form2" />
         </div>
         <button type="button" onClick={handleClick} className="btn btn-info text-white btn-sm">

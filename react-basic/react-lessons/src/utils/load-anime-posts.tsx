@@ -7,7 +7,9 @@ interface Post{
 }
 
 export default async function loadPosts(search?: string) {
-
+  if(search){
+    search = search.toLowerCase().replace(/\s+/g, '');
+  }
   const anime_filter = search ? `filter[text]=${search}&` : '';
   const animes_0 = await fetch(`https://kitsu.io/api/edge/anime?${anime_filter}page[limit]=20&page[offset]=0`);
   const animes_1 = await fetch(`https://kitsu.io/api/edge/anime?${anime_filter}page[limit]=20&page[offset]=20`);

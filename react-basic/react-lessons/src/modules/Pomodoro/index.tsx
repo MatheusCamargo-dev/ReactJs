@@ -93,7 +93,7 @@ export default function Pomodoro(props: Props){
 
   return(
     <div className="container-pomodoro vh-100 w-100 p-5" ref={container}>
-      <div className="container bg-white rounded col-9 vh-50 col-md-6 p-5">
+      <div className="container bg-white rounded col-12 col-md-6 vh-50 col-md-6 p-5">
         <div className="text-dark text-center h-50">
           <h2 className='text-nowrap'>You are {working ? 'working' : 'resting'} <FaClock /></h2>
           <Clock

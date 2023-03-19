@@ -18,8 +18,8 @@ export default function Animes(props: Props) {
         <div className="post bg-white">
           <img src={posterImage.original} alt={titles.en_jp} className="w-100"/>
           <div key={post.id} className=' text-dark p-2 text-left'>
-            <h1>{titles.en_jp}</h1>
-            <p><span className='text-primary'>Description: </span>{description.length >= 500 ? description.slice(0, 500)+'...' : description }</p>
+            <h3>{titles.en_jp}</h3>
+            <p className="fs-6 text-size-sm display-1"><span className='text-primary'>Description: </span>{description.length >= 500 ? description.slice(0, 500)+'...' : description }</p>
           </div>
         </div>
   )

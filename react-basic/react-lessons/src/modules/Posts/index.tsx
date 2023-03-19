@@ -22,13 +22,18 @@ export default function Posts() {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [postPerPage, setPostPerPage] = useState(10);
   const [offset, setOffset] = useState(0);
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState<string>('');
+  const [totItems, setTotItems] = useState(0);
 
   const loadPosts = async () => {
     const postAndPhotos = await fetchPosts();
     setPosts(postAndPhotos.slice(offset, postPerPage));
-    setAllPosts(postAndPhotos);
+    await setAllPosts(postAndPhotos);
   }
+
+  useEffect(() => {
+    setTotItems(allPosts.length)
+  }, [allPosts]);
 
   useEffect(() => {
     loadPosts()
@@ -43,9 +48,11 @@ export default function Posts() {
       const postsFilter = allPosts.filter(post => post.title.startsWith(search))
       setOffset(0);
       setPosts(postsFilter.slice(offset, postPerPage))
+      setTotItems(posts.length);
     }else{
       setOffset(0);
       setPosts(allPosts.slice(offset, postPerPage));
+      setTotItems(allPosts.length);
     }
   },[search])
   const handleChange = (e: any) => {
@@ -61,14 +68,15 @@ export default function Posts() {
             gap: '30px'
           }}
         >
-              { posts.length > 0 ?
-                posts.map((post: Post) => (
-                    <Post key={post.id} post={post}/>
-                )) : <h1 className='text-nowrap'>search: "{search}" NOT FOUND.</h1>
+              { posts.length == 0 && search?.length > 0 ?
+                 <h1 className='text-nowrap'>search: "{search}" NOT FOUND.</h1> :
+                 posts.map((post: Post) => (
+                  <Post key={post.id} post={post}/>
+                )) 
               }
         </div>
         
-        <Pagination totalItems={allPosts?.length} limit={postPerPage} offset={offset} setOffset={setOffset} />
+        <Pagination totalItems={totItems} limit={postPerPage} offset={offset} setOffset={setOffset} />
       </div>
 
   )

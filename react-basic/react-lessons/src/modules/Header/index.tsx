@@ -7,7 +7,7 @@ import {MdMovieFilter} from 'react-icons/md';
 export default function Header() {
   
   return (
-      <nav className="navbar navbar-expand-sm bg-info">
+      <nav className="navbar navbar-expand-sm bg-midnight-blue">
         <div className="container-fluid">
             <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
