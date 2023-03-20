@@ -12,6 +12,7 @@ import Repositories from './modules/Repositories';
 import Location from './modules/Location';
 import AnimesPosts from './modules/AnimesPosts';
 import Pomodoro from './modules/Pomodoro';
+import ReactHooks from './pages/ReactHooks';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/location' element={<Location />} />
         <Route path='/pomodoro' element={<Pomodoro cycles={4} pomodoroTime={1500} longRestTime={900} shortRestTime={300}/>} />
         <Route path='/animes' element={<AnimesPosts />} />
+        <Route path='/react-hooks' element={<ReactHooks />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {FaHome, FaGithub} from 'react-icons/fa';
+import {FaHome, FaGithub, FaReact} from 'react-icons/fa';
 import {BsFillFileEarmarkPostFill} from 'react-icons/bs';
 import {GoLocation} from 'react-icons/go';
 import {Gi3DGlasses, GiTomato} from 'react-icons/gi';
@@ -37,12 +37,17 @@ export default function Header() {
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link text-white font-weight-bold" to="/pomodoro"  aria-current="page">
-                        <GiTomato size={18}/> Pomodoro
+                        <GiTomato color={'red'} size={18}/> Pomodoro
                       </Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link text-white font-weight-bold" to="/animes"  aria-current="page">
                         <MdMovieFilter size={18}/> Animes
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link text-white font-weight-bold" to="/react-hooks"  aria-current="page">
+                        <FaReact color={'#61DAFB'} size={18}/> React Hooks
                       </Link>
                     </li>
                 </ul> 
