@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 interface Props{
   load: boolean;
-  reverse: boolean;
+  reverse?: boolean;
 }
 export default function Loading(props: Props) {
   const { load, reverse } = props;
