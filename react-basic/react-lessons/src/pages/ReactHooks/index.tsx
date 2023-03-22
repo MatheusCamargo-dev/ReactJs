@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect} from 'react'
 import UseEffect from './UseEffect'
+import UseMemo from './UseMemo'
 import UseState from './UseState'
 
 export default function ReactHooks() {
@@ -11,6 +12,8 @@ export default function ReactHooks() {
             <UseState />
             <h1 className='text-center text-info mt-5'>React Hook: useEffect and useCallback</h1>
             <UseEffect/>
+            <h1 className='text-center text-info mt-5'>React Hook: useMemo</h1>
+            <UseMemo/>
         </div>
     </div>
   )

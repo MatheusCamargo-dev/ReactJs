@@ -4,7 +4,7 @@ interface PropsButton{
   decrementButton: any
 }
 const Button = React.memo((props: PropsButton) => {
-  console.log('render children')
+  // console.log('render children')
   const { decrementButton } = props;
   return <button className='btn btn-info' onClick={() => decrementButton(1) }>-</button>
 })
@@ -12,15 +12,15 @@ export default function UseEffect() {
     const [counter, setCounter] = useState(0);
     
     useEffect(() => {
-      console.log('componentDidUpdate');
+      // console.log('componentDidUpdate');
     });
     
     useEffect(() => {
-      console.log('componentDidMount'); //NOTE: If you use React.StrictMode this log will be displayed twice
+      // console.log('componentDidMount'); //NOTE: If you use React.StrictMode this log will be displayed twice
     }, []);
     
     useEffect(() => {
-      console.log(`Counter change for ${counter}`);
+      // console.log(`Counter change for ${counter}`);
     }, [counter]);
 
     const decrementButton = useCallback((num: number) =>{

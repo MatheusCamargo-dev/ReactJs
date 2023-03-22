@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import fetchPosts from '../../utils/load-posts';
 import fetchAnimes from '../../utils/load-anime-posts';
 import Pagination from '../Pagination';
@@ -20,7 +20,7 @@ export default function Posts() {
   
   const [posts, setPosts] = useState<Post[]>([]);
   const [allPosts, setAllPosts] = useState<Post[]>([]);
-  const [postPerPage, setPostPerPage] = useState(10);
+  const [postPerPage] = useState(10);
   const [offset, setOffset] = useState(0);
   const [search, setSearch] = useState<string>('');
   const [totItems, setTotItems] = useState(0);
@@ -68,11 +68,15 @@ export default function Posts() {
             gap: '30px'
           }}
         >
-              { posts.length == 0 && search?.length > 0 ?
-                 <h1 className='text-nowrap'>search: "{search}" NOT FOUND.</h1> :
-                 posts.map((post: Post) => (
-                  <Post key={post.id} post={post}/>
-                )) 
+              { useMemo(() => { 
+                  return (
+                    posts.length == 0 && search?.length > 0 ? 
+                        <h1 className='text-nowrap'>search: "{search}" NOT FOUND.</h1> :
+                        posts.map((post: Post) => (
+                          <Post key={post.id} post={post}/>
+                        ))
+                  )
+               }, [posts])
               }
         </div>
         
