@@ -17,7 +17,7 @@ export default function UseRef() {
     return (
       <div className="d-flex justify-content-center align-items-center">
         <div className="d-flex justify-content-center align-items-center">
-          <input type="text" className="form-control" ref={input} placeholder='write a text' />
+          <input type="text" className="form-control" ref={input} placeholder='write  text' />
           <button id="clipboard" className="btn btn-secondary ms-1 d-flex align-items-center" onClick={toCopy}><FaClipboard /> copy</button>
         </div>
       </div>
