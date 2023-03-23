@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect} from 'react'
 import UseContext from './UseContext'
 import UseEffect from './UseEffect'
 import UseMemo from './UseMemo'
+import { UseReducer } from './UseReducer'
 import UseRef from './UseRef'
 import UseState from './UseState'
 
@@ -20,6 +21,8 @@ export default function ReactHooks() {
             <UseRef />
             <h1 className='text-center text-info mt-5'>React Hook: useContext</h1>
             <UseContext />
+            <h1 className='text-center text-info mt-5'>React Hook: useReducer</h1>
+            <UseReducer />
         </div>
     </div>
   )
