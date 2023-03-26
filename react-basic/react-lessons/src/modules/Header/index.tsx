@@ -4,6 +4,7 @@ import {BsFillFileEarmarkPostFill} from 'react-icons/bs';
 import {GoLocation} from 'react-icons/go';
 import {Gi3DGlasses, GiTomato} from 'react-icons/gi';
 import {MdMovieFilter} from 'react-icons/md';
+import { SiRedux } from 'react-icons/si';
 export default function Header() {
   
   return (
@@ -48,6 +49,11 @@ export default function Header() {
                     <li className="nav-item">
                       <Link className="nav-link text-white font-weight-bold" to="/react-hooks"  aria-current="page">
                         <FaReact color={'#61DAFB'} size={18}/> React Hooks
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link text-white font-weight-bold" to="/react-redux"  aria-current="page">
+                        <SiRedux color={'#764ABC'} size={18}/> React Redux
                       </Link>
                     </li>
                 </ul> 

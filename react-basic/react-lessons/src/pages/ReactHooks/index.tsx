@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect} from 'react'
 import MyCustomHook from './MyCustomHook'
+import ReduxConn from './ReduxConn'
 import UseContext from './UseContext'
 import UseEffect from './UseEffect'
 import UseMemo from './UseMemo'
@@ -26,6 +27,8 @@ export default function ReactHooks() {
             <UseReducer />
             <h1 className='text-center text-info mt-5'>React Hook: myCustomHook</h1>
             <MyCustomHook />
+            <h1 className='text-center text-info mt-5'>React Lib: Redux</h1>
+            <ReduxConn />
         </div>
     </div>
   )
