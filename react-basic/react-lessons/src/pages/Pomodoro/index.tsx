@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef} from 'react'
 import { useInterval } from '../../utils/use-interval';
-import Clock from '../Clock';
+import Clock from '../../components/Clock';
 import {FaClock} from 'react-icons/fa';
 import {BsStopwatch} from 'react-icons/bs';
 import {IoIosStopwatch} from 'react-icons/io';

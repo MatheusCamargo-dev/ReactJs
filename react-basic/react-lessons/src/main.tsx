@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Header from './modules/Header';
-import Home from './modules/Home';
-import Posts from './modules/Posts';
 import Styles from './styles/Styles.js';
 import  './styles/styles.css';
-import Repositories from './modules/Repositories';
-import Location from './modules/Location';
-import AnimesPosts from './modules/AnimesPosts';
-import Pomodoro from './modules/Pomodoro';
 import ReactHooks from './pages/ReactHooks';
 import ReactRedux from './pages/ReactRedux';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import Home from './pages/Home/index.js';
+import Posts from './pages/Posts/index.js';
+import Repositories from './pages/Repositories/index.js';
+import Location from './pages/Location/index.js';
+import Pomodoro from './pages/Pomodoro/index.js';
+import AnimesPosts from './components/AnimesPosts/index.js';
+import Header from './components/Header/index.js';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

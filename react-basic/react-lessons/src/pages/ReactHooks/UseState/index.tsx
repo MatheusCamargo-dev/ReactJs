@@ -1,5 +1,5 @@
 import React, { useRef, useState} from 'react'
-import Loading from '../../../modules/Loading';
+import Loading from '../../../components/Loading';
 
 export default function UseState() {
     const [reverseSpinner, setReverseSpinner] = useState<boolean>(false);

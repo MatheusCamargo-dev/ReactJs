@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import fetchAnimes from '../../utils/load-anime-posts';
 import Pagination from '../Pagination';
 import {FaSearch} from 'react-icons/fa'
-import Animes from '../Animes';
+import Animes from '../../pages/Animes';
 import Search from '../Search';
 import Loading from '../Loading';
 interface AttributesAnimes{

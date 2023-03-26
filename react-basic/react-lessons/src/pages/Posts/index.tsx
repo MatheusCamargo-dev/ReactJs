@@ -1,10 +1,8 @@
 import { useEffect, useState, useMemo } from 'react';
 import fetchPosts from '../../utils/load-posts';
-import fetchAnimes from '../../utils/load-anime-posts';
-import Pagination from '../Pagination';
-import Post from '../Post';
-import { FaSearch } from 'react-icons/fa';
-import Search from '../Search';
+import Pagination from '../../components/Pagination';
+import Post from '../../components/Post';
+import Search from '../../components/Search';
 interface Post{
   id: number;
   title: string;
