@@ -19,3 +19,8 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.post('/login', 'AuthController.login');
+Route.get('/login', 'AuthController.login');
+Route.get('/users', 'UserController.index');
+Route.post('/users', 'UserController.store');
