@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
+    "@reduxjs/toolkit": "^1.9.3",
     "@types/bootstrap": "^5.2.6",
     "@types/node": "18.15.10",
     "@types/react": "18.0.29",
@@ -23,6 +26,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.8",
     "react-icons": "^4.8.0",
+    "react-redux": "^8.0.5",
     "supports-color": "^9.3.1",
     "typescript": "5.0.2"
   },
