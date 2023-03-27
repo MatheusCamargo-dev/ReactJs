@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 }
 export async function GET(request: Request) {
     try{
-        const user = {message: 'this is user'};
+        const user = await userController.showUser();
         return NextResponse.json(user);
     }
     catch(e){

@@ -17,8 +17,13 @@ export default function Header() {
                         </Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link active text-white" href="/app" aria-current="page">
+                          <FaHome size={24} /> App
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link active text-white" href="/info" aria-current="page">
-                          <FaReact size={24} /> Home
+                          <FaReact size={24} /> info
                         </Link>
                     </li>
                 </ul> 

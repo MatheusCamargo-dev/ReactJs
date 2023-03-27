@@ -12,8 +12,29 @@ const createUser = async (queryUser: any) => {
     }
 }
 
+// Create: Model.create() ou new Model() seguido de model.save()
+// Read: Model.find(), Model.findOne(), Model.findById()
+// Update: Model.updateOne(), Model.updateMany(), Model.findOneAndUpdate(), Model.findByIdAndUpdate()
+// Delete: Model.deleteOne(), Model.deleteMany(), Model.findOneAndDelete(), Model.findByIdAndDelete()
+
+const showUser = async (id?: string) => {
+    try{
+        if(!database.connect()) return false;
+        if(id){
+            const user = await User.findById(id);
+            return user
+        }else{
+            const user = await User.find();
+            return user
+        }
+    }
+    catch(e){
+        console.error(e);
+    }
+}
 const userController = {
-    createUser
+    createUser,
+    showUser
 }
 
 export default userController;
