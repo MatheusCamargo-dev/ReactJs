@@ -17,7 +17,6 @@ export async function singInRequest(data: SignInRequestData) {
         })
     });
     const auth = await jwt.json();
-    
     auth.status == 1 && setCookie(undefined, 'token', auth.token, {
                             maxAge: 60 * 80 * 24 //one day
                         })

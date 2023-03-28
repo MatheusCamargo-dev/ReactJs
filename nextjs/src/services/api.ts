@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { parseCookies } from 'nookies';
-const { token } = parseCookies();
+import { cookies } from 'next/headers';
 
+const cookieStore = cookies();
+const token = cookieStore.get('token')
 export const api = axios.create({
     baseURL: 'http://localhost'
 })

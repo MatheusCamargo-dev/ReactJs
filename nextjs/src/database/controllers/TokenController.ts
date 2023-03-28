@@ -22,9 +22,7 @@ const createToken = async (queryUser: any) => {
     }
 
     const { id } = user;
-    console.log(id, email);
     const now = new Date();
-    console.log(now)
     const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET as string, {
       expiresIn: "7 days",
     });
@@ -34,8 +32,7 @@ const createToken = async (queryUser: any) => {
 const validToken = async(token: string) => {
   try{
     const now = new Date();
-    console.log(now)
-    console.log(jwt.verify(token, process.env.TOKEN_SECRET as string));
+    // const data = jwt.verify(token, process.env.TOKEN_SECRET as string);
     const userData = [null];
     return { status: 1, userData}
   }catch(e){

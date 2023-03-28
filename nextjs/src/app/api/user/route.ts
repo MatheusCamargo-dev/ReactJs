@@ -15,10 +15,8 @@ export async function POST(request: Request) {
     }
 }
 export async function GET(request: NextRequest) {
-    try{
-
+    try{ 
         const token = request.headers.get('authorization')?.split(" ")[1]
-
         if(!token) return { status: 0, message: "Token invalid"};
 
         const res =  await tokenController.validToken(token);

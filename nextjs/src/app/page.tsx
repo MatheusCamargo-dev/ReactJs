@@ -31,7 +31,6 @@ export default function Home() {
       if (auth.status == 0){
         setErrorMessage(auth.message);
       };
-
       if (auth.status === 1){
         router.push('/app');
       }

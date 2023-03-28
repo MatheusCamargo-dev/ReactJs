@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
+import { api } from "@/services/api";
 import axios from 'axios';
-export default async function Home() {
-  const response = await axios('http://localhost:3000/api/user/');
+export default async function App() {
+  
+  const response = await api('http://localhost:3000/api/user/');
   // await fetch('http://localhost:3000/api/user/', cache: 'no-store'); SSR
   return (
     <div className="text-white">
