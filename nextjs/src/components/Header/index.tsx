@@ -7,7 +7,7 @@ import Link from 'next/link';
 const navigation = [
   { name: 'Home', href: '/', current: false },
   { name: 'App', href: '/app', current: false },
-  { name: 'Info', href: '/info', current: false },
+  { name: 'Info', href: '/app/info', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -16,7 +16,7 @@ function classNames(...classes: string[]) {
 
 export default function Header() {
   return (
-    <Disclosure as="nav" className="bg-green-800">
+    <Disclosure as="nav" className="bg-green-800 z-500">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

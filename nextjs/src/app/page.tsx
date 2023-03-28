@@ -8,7 +8,7 @@ import { store } from '@/store/store';
 import { singInRequest } from '@/services/auth';
 import { useStoreSelector } from '@/hooks/useStoreSelector';
 import {  useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type AuthState = {
   Auth: {
@@ -26,7 +26,7 @@ export default function Home() {
   // const dispatch = useDispatch();
   
 
-    async function handleSignIn(data: any){
+   async function handleSignIn(data: any){
       const auth = await singInRequest(data);
       if (auth.status == 0){
         setErrorMessage(auth.message);
@@ -45,7 +45,6 @@ export default function Home() {
         <body class="h-full">
         ```
       */}
-      <Header />
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>

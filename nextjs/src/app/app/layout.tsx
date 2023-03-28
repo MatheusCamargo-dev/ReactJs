@@ -5,7 +5,7 @@ interface AppLayoutProps{
 }
 export default function AppLayout({children}:AppLayoutProps){
     return(
-        <div>
+        <div className="rounded flex flex-col">
             <Header></Header>
             {children}
         </div>
