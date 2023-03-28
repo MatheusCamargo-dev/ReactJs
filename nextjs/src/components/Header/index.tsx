@@ -79,7 +79,7 @@ export default function Header() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://avatars.githubusercontent.com/u/109381513?v=4"
+                        src="https://github.com/MatheusCamargo-dev.png"
                         alt=""
                       />
                     </Menu.Button>

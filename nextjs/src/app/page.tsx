@@ -3,13 +3,38 @@
 import Header from '@/components/Header'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useForm } from 'react-hook-form';
+import { Provider, useDispatch } from 'react-redux';
+import { store } from '@/store/store';
+import { singInRequest } from '@/services/auth';
+import { useStoreSelector } from '@/hooks/useStoreSelector';
+import {  useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+type AuthState = {
+  Auth: {
+    isAuthenticated: boolean
+  }
+};
+
 
 export default function Home() {
 
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState('');
+  // const authSession = useStoreSelector((state: AuthState) => state.Auth);
+  // const dispatch = useDispatch();
+  
 
-  function handleSignIn(data: any){
-    console.log(data);
+    async function handleSignIn(data: any){
+      const auth = await singInRequest(data);
+      if (auth.status == 0){
+        setErrorMessage(auth.message);
+      };
+
+      if (auth.status === 1){
+        router.push('/app');
+      }
   }
   return (
     <>
@@ -67,8 +92,14 @@ export default function Home() {
                   placeholder="Password"
                 />
               </div>
+              
             </div>
-
+            {
+              errorMessage && <div className=" d-flex p-1.5 rounded bg-red-500 text-white m-2.5 mt-10">
+                                  <p>{errorMessage}</p>
+                              </div>
+            }
+            
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -104,5 +135,6 @@ export default function Home() {
         </div>
       </div>
     </>
+    
   )
 }

@@ -1,10 +1,16 @@
 import database from "../MongoConnect";
 import { User } from "../schemas/UserSchema";
+import bcryptjs from 'bcryptjs';
 
 const createUser = async (queryUser: any) => {
     try{
         if(!database.connect()) return false;
-        const user = new User(queryUser);
+        let { password } = queryUser;
+        const salt = await bcryptjs.genSaltSync();
+        password = await bcryptjs.hashSync(password, salt);
+
+        const dataUser = {...queryUser, password};
+        const user = new User(dataUser);
         await user.save();
         return user;
     }catch(e){

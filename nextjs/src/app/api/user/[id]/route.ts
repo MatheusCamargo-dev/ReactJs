@@ -5,7 +5,6 @@ import userController from "@/database/controllers/UserController";
 export async function GET(request: Request, { params }: { params: {id: string}}) {
     try{
         const id = params.id;
-        console.log(id);
         const user = await userController.showUser(id);
         return NextResponse.json(user);
     }
