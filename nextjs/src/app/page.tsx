@@ -22,14 +22,18 @@ export default function Home() {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
+  const [loginText, setLoginText] = useState('Sign In');
+
   // const authSession = useStoreSelector((state: AuthState) => state.Auth);
   // const dispatch = useDispatch();
   
 
    async function handleSignIn(data: any){
+      setLoginText('wait...')
       const auth = await singInRequest(data);
       if (auth.status == 0){
         setErrorMessage(auth.message);
+        setLoginText('Sign In')
       };
       if (auth.status === 1){
         router.push('/app');
@@ -126,7 +130,7 @@ export default function Home() {
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-slate-700 group-hover:text-white" aria-hidden="true" />
                 </span>
-                Sign in
+                {loginText}
               </button>
             </div>
           </form>
