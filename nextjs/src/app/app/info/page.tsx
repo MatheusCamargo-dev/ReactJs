@@ -53,7 +53,9 @@ function TextForm(){
                     <div className="p-4 bg-gray-100 border border-gray-400 rounded-lg h-48 overflow-y-scroll">
                         <p>{text}</p>
                     </div>
-                    <button id="clipboard" className="group relative flex w-full justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-slate-700 hover:bg-green-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={toCopy}><FaClipboard /> copy</button>
+                    <div className="flex justify-end align-end mt-1">
+                        <button id="clipboard" className="group relative flex justify-center items-end text-end flex-row rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-slate-700 hover:bg-blue-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={toCopy}><FaClipboard /> copy</button>
+                    </div>
                     </div>
                 </div>
             </div>
