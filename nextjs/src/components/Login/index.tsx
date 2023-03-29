@@ -7,11 +7,12 @@ type Login = {
     loginText: string,
     changeForm: any,
     isLoading: boolean,
+    email: string,
 
 }
 
 export default function Login (props: Login) {
-    const { handleSignIn, errorMessage, loginText, changeForm, isLoading} = props;
+    const { handleSignIn, errorMessage, loginText, changeForm, isLoading, email} = props;
     const { register, handleSubmit } = useForm();
 
     return(
@@ -45,6 +46,7 @@ export default function Login (props: Login) {
                         name="email"
                         type="email"
                         autoComplete="email"
+                        value={email}
                         required
                         className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 p-1.5 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Email address"

@@ -37,7 +37,6 @@ export async function signUpRequest(data: SignInRequestData) {
         })
     });
     const userData = await response.json();
-   
     return userData;
 
 }

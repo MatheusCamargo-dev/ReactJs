@@ -6,8 +6,14 @@ import tokenController from "@/database/controllers/TokenController";
 export async function POST(request: Request) {
     try{
         const res = await request.json();
-        const user = await userController.createUser(res);
-        return NextResponse.json(user);
+        const { fullname: name, username, password, email } = res.date;
+        const user = await userController.createUser({name, username, password, email});
+        console.log('api user---');
+        console.log(user);
+        if(user){
+            return NextResponse.json(user);
+        }
+        return NextResponse.json({status: 0, message: 'Failed to create a user'});
     }
     catch(e){
         console.error(e);
@@ -17,13 +23,12 @@ export async function POST(request: Request) {
 export async function GET(request: NextRequest) {
     try{ 
         const token = request.headers.get('authorization')?.split(" ")[1]
-        if(!token) return { status: 0, message: "Token invalid"};
+        if(!token) return  NextResponse.json({ status: 0, message: "Token invalid"});
 
         const res =  await tokenController.validToken(token);
         if(res.status == 1){
             const user = await userController.showUser();
             return NextResponse.json(user);
-            
         }
         return NextResponse.json(res);
     }

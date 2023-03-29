@@ -13,6 +13,7 @@ export default function Home() {
   const [loginText, setLoginText] = useState('Sign In');
   const [typeForm, setTypeForm] = useState('login');
   const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
    function changeForm() {
       setIsLoading(false);
       setErrorMessage('');
@@ -40,13 +41,14 @@ export default function Home() {
       setIsLoading(true);
       setErrorMessage('');
       setLoginText('wait...')
-      const auth = await signInRequest(data);
-      if (auth.status == 0){
-        setErrorMessage(auth.message);
+      const user = await signInRequest(data);
+      console.log(user);
+      if (user.status == 0){
+        setErrorMessage(user.message);
         setLoginText('Sign In')
         setIsLoading(false);
       };
-      if (auth.status === 1){
+      if (user.status === 1){
         router.push('/app');
       }
   }
@@ -60,12 +62,14 @@ export default function Home() {
     };
 
     const user = await signUpRequest(data);
+    setIsLoading(false);
     if (user.status == 0){
       setErrorMessage(user.message);
-      setIsLoading(false);
     };
 
     if (user.status === 1){
+      setEmail(user.email);
+      setTypeForm('login');
       router.push('/');
     }
   }
@@ -73,7 +77,7 @@ export default function Home() {
   return (
     <>
         <div className="flex min-h-full items-center justify-center h-screen py-12 px-4 sm:px-6 lg:px-8">
-          { typeForm == 'login' && <Login isLoading={isLoading} changeForm={changeForm} errorMessage={errorMessage} handleSignIn={handleSignIn} loginText={loginText}/> }
+          { typeForm == 'login' && <Login email={email} isLoading={isLoading} changeForm={changeForm} errorMessage={errorMessage} handleSignIn={handleSignIn} loginText={loginText}/> }
           { typeForm == 'register' && <Register errorMessage={errorMessage} isLoading={isLoading} changeForm={changeForm} handleSignUp={handleSignUp} />}
         </div>
 
