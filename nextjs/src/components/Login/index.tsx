@@ -6,15 +6,16 @@ type Login = {
     errorMessage: string,
     loginText: string,
     changeForm: any,
+    isLoading: boolean,
 
 }
 
 export default function Login (props: Login) {
-    const { handleSignIn, errorMessage, loginText, changeForm} = props;
+    const { handleSignIn, errorMessage, loginText, changeForm, isLoading} = props;
     const { register, handleSubmit } = useForm();
 
     return(
-            <div className="w-full max-w-md space-y-8">
+            <div className="w-full max-w-md bg-zinc-900 p-10 rounded space-y-8">
                 <div>
                     <img
                     className="mx-auto h-12 w-auto"
@@ -96,6 +97,7 @@ export default function Login (props: Login) {
                     <button
                         type="submit"
                         className="group relative flex w-full justify-center rounded-md bg-green-600 py-2 px-3 text-sm font-semibold text-slate-700 hover:bg-green-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        disabled={isLoading}
                     >
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                         <LockClosedIcon className="h-5 w-5 text-slate-700 group-hover:text-white" aria-hidden="true" />

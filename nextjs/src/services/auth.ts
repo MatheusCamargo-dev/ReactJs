@@ -4,7 +4,7 @@ type SignInRequestData = {
     email: string;
     password: string;
 }
-export async function singInRequest(data: SignInRequestData) {
+export async function signInRequest(data: SignInRequestData) {
 
     const jwt = await fetch('http://localhost:3000/api/auth/',
     {
@@ -21,5 +21,23 @@ export async function singInRequest(data: SignInRequestData) {
                             maxAge: 60 * 80 * 24 //one day
                         })
     return auth;
+
+}
+
+export async function signUpRequest(data: SignInRequestData) {
+
+    const response = await fetch('http://localhost:3000/api/user/',
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            date: data
+        })
+    });
+    const userData = await response.json();
+   
+    return userData;
 
 }

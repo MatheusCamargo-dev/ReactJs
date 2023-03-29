@@ -1,6 +1,6 @@
 "use client"
 
-import { singInRequest } from '@/services/auth';
+import { signInRequest, signUpRequest } from '@/services/auth';
 import {  useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Login from '@/components/Login';
@@ -12,32 +12,69 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [loginText, setLoginText] = useState('Sign In');
   const [typeForm, setTypeForm] = useState('login');
-
+  const [isLoading, setIsLoading] = useState(false);
    function changeForm() {
+      setIsLoading(false);
+      setErrorMessage('');
       if(typeForm == 'login'){
         setTypeForm('register')
       }else{
         setTypeForm('login')
       }
    }
+   function passwordIsValid(password: string, confirm_password: string){
+      if(!(password === confirm_password)) {
+        setErrorMessage('diferent passwords!')
+        return false;
+      }
 
-   async function handleSignIn(data: any){
-    setErrorMessage('');
+      if(password.length < 6){
+        setErrorMessage('password must contain at least 6 digits')
+        return false;
+      }
+
+      return true;
+   }
+
+  async function handleSignIn(data: any){
+      setIsLoading(true);
+      setErrorMessage('');
       setLoginText('wait...')
-      const auth = await singInRequest(data);
+      const auth = await signInRequest(data);
       if (auth.status == 0){
         setErrorMessage(auth.message);
         setLoginText('Sign In')
+        setIsLoading(false);
       };
       if (auth.status === 1){
         router.push('/app');
       }
   }
+  
+  async function handleSignUp(data: any) {
+    setIsLoading(true);
+    const { password, confirm_password} = data;
+    if(!passwordIsValid(password, confirm_password)) {
+      setIsLoading(false);
+      return;
+    };
+
+    const user = await signUpRequest(data);
+    if (user.status == 0){
+      setErrorMessage(user.message);
+      setIsLoading(false);
+    };
+
+    if (user.status === 1){
+      router.push('/');
+    }
+  }
+
   return (
     <>
         <div className="flex min-h-full items-center justify-center h-screen py-12 px-4 sm:px-6 lg:px-8">
-          { typeForm == 'login' && <Login changeForm={changeForm} errorMessage={errorMessage} handleSignIn={handleSignIn} loginText={loginText}/> }
-          { typeForm == 'register' && <Register  changeForm={changeForm} />}
+          { typeForm == 'login' && <Login isLoading={isLoading} changeForm={changeForm} errorMessage={errorMessage} handleSignIn={handleSignIn} loginText={loginText}/> }
+          { typeForm == 'register' && <Register errorMessage={errorMessage} isLoading={isLoading} changeForm={changeForm} handleSignUp={handleSignUp} />}
         </div>
 
     </>
