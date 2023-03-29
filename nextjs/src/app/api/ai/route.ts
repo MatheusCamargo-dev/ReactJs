@@ -15,10 +15,10 @@ export async function POST(request: NextRequest) {
         if(res.status == 1){
             const form = await request.json();
             const { text } = form.date;
-            console.log(text);
-            console.log('------post--------')
             const output = await chatGPTController.submit(text);
-            return NextResponse.json(output);
+            if(output.error !== undefined) return NextResponse.json(output.error.message);
+            const r = output.choices[0]?.text;
+            return NextResponse.json(r);
         }
         return NextResponse.json(res);
     }
