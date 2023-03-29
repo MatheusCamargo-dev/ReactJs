@@ -11,7 +11,6 @@ export const api = axios.create({
 
 export async function setupAPIClient(ctx = undefined) {
   const { token } = await parseCookies(ctx);
-  console.log(token)
   if(token){
       api.defaults.headers['Authorization'] = `Bearer ${token}`;
   }
