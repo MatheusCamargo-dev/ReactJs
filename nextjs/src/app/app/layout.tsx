@@ -1,9 +1,11 @@
+import AuthProvider from "@/components/AuthProvider";
 import Header from "@/components/Header";
 import { ReactNode } from "react";
 interface AppLayoutProps{
     children: ReactNode
 }
-export default function AppLayout({children}:AppLayoutProps){
+  
+const AppLayout = ({ children }: AppLayoutProps) => {
     return(
         <div className="rounded flex flex-col h-screen bg-gray-100">
             <Header></Header>
@@ -11,3 +13,5 @@ export default function AppLayout({children}:AppLayoutProps){
         </div>
     )
 }   
+
+export default AuthProvider(AppLayout)
