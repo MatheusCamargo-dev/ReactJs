@@ -65,17 +65,6 @@ function TextForm(){
     )
 }
 export default function Info() {
-    // const router = useRouter();
-    // useEffect(() =>{
-    //    const token = async () => {
-    //         const api = await setupAPIClient();
-    //         const auth = await api('http://localhost:3000/api/token');
-    //         console.log(auth);
-    //         if (auth.data.status == 0) router.push('/');
-    //    }
-    //    token();
-    // }, [])
-    
     
     return (
       <div className="flex flex-col justify-center items-center mt-20 w-full bg-gray-100">

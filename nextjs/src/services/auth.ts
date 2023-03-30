@@ -12,6 +12,7 @@ export async function signInRequest(data: SignInRequestData) {
         headers: {
             'Content-Type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify({
             date: data
         })
@@ -32,6 +33,7 @@ export async function signUpRequest(data: SignInRequestData) {
         headers: {
             'Content-Type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify({
             date: data
         })

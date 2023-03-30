@@ -1,8 +1,30 @@
 import tokenController from "@/database/controllers/TokenController";
 import { NextResponse } from "next/server";
+import  cors from 'micro-cors';
 
-export async function POST(request: Request) {
+const corsHandler = cors({
+    allowMethods: ['POST', 'GET', 'HEAD'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id'],
+    origin: "*",
+});
+
+export async function OPTIONS(request: any, response: Response) {
     try{
+        await corsHandler(request);
+        return NextResponse.json({});
+    }
+    catch(e){
+        console.error(e);
+        return NextResponse.error();
+    }
+}
+
+
+
+export async function POST(request: any, response: Response) {
+    try{
+        await corsHandler(request);
         const res = await request.json();
         const { email, password} = res.date
         const auth = await tokenController.createToken({email, password});

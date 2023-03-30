@@ -1,4 +1,4 @@
-import AuthProvider from "@/components/AuthProvider";
+import AuthProvider from "@/middlewares/AuthProvider";
 import { ReactNode } from "react";
 interface AppLayoutProps{
     children: ReactNode

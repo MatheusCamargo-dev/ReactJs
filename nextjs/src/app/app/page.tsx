@@ -1,7 +1,7 @@
 import api from '@/services/api-back-end';
 
 export default async function App() {
-  const data = await api('http://localhost:3000/api/user/')
+  const data = await api('http://127.0.0.1:3000/api/user/')
   
   return (
     <div className="text-dark bg-white">
