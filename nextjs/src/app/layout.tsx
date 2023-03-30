@@ -11,8 +11,6 @@ export default function RootLayout({ children }: { children: ReactNode}) {
       </head>
       <body className='bg-green-800'>
         {children}
-        <footer>
-        </footer>
       </body>
 
     </html>

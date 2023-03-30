@@ -30,7 +30,6 @@ const createToken = async (queryUser: any) => {
 
 const validToken = async(token: string) => {
   try{
-    console.log(token)
     const userData = jwt.verify(token, process.env.TOKEN_SECRET as string);
     return { status: 1, userData}
   }catch(e){

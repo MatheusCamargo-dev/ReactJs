@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
     try{ 
         const token = request.headers.get('authorization')?.split(" ")[1]
         if(token == 'undefined' || token == undefined){
-            console.log('if?')
             return NextResponse.json({ status: 0, message: "Token invalid"});
         } 
 

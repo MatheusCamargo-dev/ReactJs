@@ -1,18 +1,34 @@
-import api from "@/services/api-back-end";
-import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+"use client"
+import { ReactNode, useEffect, useState } from "react";
+import {  useRouter } from 'next/navigation';
+import {setupAPIClient} from "@/services/api-client";
+import Header from "../Header";
+import AppLoading from "../AppLoading";
 
 type AuthenticatedComponentProps = {
-  children: ReactNode;
+  child: ReactNode;
+  children?: ReactNode;
 };
 
-export default function AuthProvider(Component: React.FC<AuthenticatedComponentProps>) {
-  async function AuthenticatedComponent(props: AuthenticatedComponentProps) {
-    const auth = await api("http://localhost:3000/api/token", true);
-    if (auth.status === 0) redirect("/");
+export default function AuthProvider(props: AuthenticatedComponentProps) {
+  const router = useRouter();
+  const { child } = props;
+  const [authStatus, setAuthStatus ] = useState(0);
+  useEffect(() =>{
+     const token = async () => {
+          const api = await setupAPIClient();
+          const auth = await api('http://localhost:3000/api/token');
+          if (auth.data.status == 0) router.push('/');
+          setAuthStatus(auth.data.status);
+     }
+     token();
+  }, []);
 
-    return <Component {...props} />;
-  }
-
-  return AuthenticatedComponent;
+  return(
+    <>
+      { authStatus == 1 && <Header/>}
+      { authStatus == 1 && child}
+      { authStatus == 0 && <AppLoading />}
+    </>
+  )
 }

@@ -1,4 +1,5 @@
 "use client"
+
 import {setupAPIClient} from "@/services/api-client";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -64,16 +65,16 @@ function TextForm(){
     )
 }
 export default function Info() {
-    const router = useRouter();
-    useEffect(() =>{
-       const token = async () => {
-            const api = await setupAPIClient();
-            const auth = await api('http://localhost:3000/api/token');
-            if (auth.data.status == 0) router.push('/');
-       }
-
-       token();
-    }, [])
+    // const router = useRouter();
+    // useEffect(() =>{
+    //    const token = async () => {
+    //         const api = await setupAPIClient();
+    //         const auth = await api('http://localhost:3000/api/token');
+    //         console.log(auth);
+    //         if (auth.data.status == 0) router.push('/');
+    //    }
+    //    token();
+    // }, [])
     
     
     return (
@@ -83,4 +84,4 @@ export default function Info() {
         </div>
       </div>
     )
-  }
+}
