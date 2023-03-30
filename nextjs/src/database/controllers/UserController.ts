@@ -5,16 +5,14 @@ import bcryptjs from 'bcryptjs';
 const createUser = async (queryUser: any) => {
     try{
         if(!database.connect()) return false;
-        let { password, email, name } = queryUser;
+        let { password, email, username } = queryUser;
 
-        console.log('user:'+ queryUser);
-        
         const alreadyEmail = await User.findOne({email});
         if (alreadyEmail) {
             return {status: 0, message: `Email already exists` };
         }
         
-        const alreadyName = await User.findOne({name});
+        const alreadyName = await User.findOne({username});
         if (alreadyName) {
             return {status: 0, message: `Username already exists` };
         }

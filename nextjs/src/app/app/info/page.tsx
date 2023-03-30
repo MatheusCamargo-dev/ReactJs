@@ -22,7 +22,6 @@ function TextForm(){
                     date: data
                 })
             });
-            console.log(response)
         const textGPT = await response.json();
         setText(textGPT)
     }
@@ -65,7 +64,7 @@ function TextForm(){
 }
 export default function Info() {
     return (
-      <div className="flex flex-col justify-center items-center h-screen w-full bg-gray-100">
+      <div className="flex flex-col justify-center items-center mt-20 w-full bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full shadow-lg max-w-7xl ">
           <TextForm />
         </div>

@@ -1,4 +1,5 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 type Login = {
@@ -13,8 +14,23 @@ type Login = {
 
 export default function Login (props: Login) {
     const { handleSignIn, errorMessage, loginText, changeForm, isLoading, email} = props;
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
+    const inputEmail = useRef<HTMLInputElement>(null)
+    const inputPassword = useRef<HTMLInputElement>(null);
 
+    function changeEmail (e: any){
+        setValue('email', e.target.value);
+    }
+    function changePassword (e: any){
+        setValue('password', e.target.value);
+    }
+    useEffect(() => {
+        if(email && inputEmail.current && inputPassword.current){
+            inputEmail.current.value = email;
+            inputPassword.current.focus();
+            setValue('email', email);
+        }
+    }, [email])
     return(
             <div className="w-full max-w-md bg-zinc-900 p-10 rounded space-y-8">
                 <div>
@@ -29,7 +45,7 @@ export default function Login (props: Login) {
                     <p className="mt-2 text-center text-sm text-white">
                         Or{' '}
                         <a onClick={changeForm} className="font-medium cursor-pointer text-green-600 hover:text-green-500">
-                            register new account
+                            register a new account
                         </a>
                     </p>
                 </div>
@@ -46,7 +62,9 @@ export default function Login (props: Login) {
                         name="email"
                         type="email"
                         autoComplete="email"
-                        value={email}
+                        ref={inputEmail}
+                        onChange={changeEmail}
+                        defaultValue={email}
                         required
                         className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 p-1.5 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Email address"
@@ -62,6 +80,8 @@ export default function Login (props: Login) {
                         name="password"
                         type="password"
                         autoComplete="current-password"
+                        ref={inputPassword}
+                        onChange={changePassword}
                         required
                         className="relative block w-full rounded-b-md border-0 py-1.5 p-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Password"
@@ -76,23 +96,17 @@ export default function Login (props: Login) {
                     }
                     
                     <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                        <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label htmlFor="remember-me" className="ml-2 block text-sm text-white">
-                        Remember me
-                        </label>
-                    </div>
-
-                    {/* <div className="text-sm">
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Forgot your password?
-                        </a>
-                    </div> */}
+                        <div className="flex items-center">
+                            <input
+                            id="remember-me"
+                            name="remember-me"
+                            type="checkbox"
+                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-white">
+                            Remember me
+                            </label>
+                        </div>
                     </div>
 
                     <div>

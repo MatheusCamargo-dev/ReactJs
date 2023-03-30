@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import userController from "@/database/controllers/UserController";
-import  jwt  from "jsonwebtoken";
 import tokenController from "@/database/controllers/TokenController";
 
 export async function POST(request: Request) {
     try{
         const res = await request.json();
-        const { fullname: name, username, password, email } = res.date;
-        const user = await userController.createUser({name, username, password, email});
-        console.log('api user---');
-        console.log(user);
+        const { fullname , username, password, email } = res.date;
+        const user = await userController.createUser({fullname, username, password, email});
         if(user){
             return NextResponse.json(user);
         }

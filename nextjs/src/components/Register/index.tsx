@@ -12,10 +12,10 @@ export default function Register (props: Register) {
     const { register, handleSubmit } = useForm();
 
     return(
-            <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div className="bg-white px-6 py-8 rounded shadow-md bg-zinc-900 p-8 text-black w-full">
-                    <h1 className="mb-8 text-3xl text-center text-white ">Sign up</h1>
-                    <form className="mt-8 space-y-4" onSubmit={handleSubmit(handleSignUp)}>
+            <div className="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <div className="bg-white px-8 py-8 rounded shadow-md bg-zinc-900 p-8 text-black w-full">
+                    <h1 className="text-3xl text-center text-white font-bold tracking-tight ">Register</h1>
+                    <form className="mt-5 space-y-4" onSubmit={handleSubmit(handleSignUp)}>
                         <div>
                             <label htmlFor="fullname" className="text-green-500">Full Name:</label>
                             <input 
@@ -87,7 +87,7 @@ export default function Register (props: Register) {
                             type="submit"
                             className="group relative flex w-full justify-center rounded-md bg-green-600 py-2 px-3 text-sm font-semibold text-slate-700 hover:bg-green-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             disabled={isLoading}
-                        >Create Account
+                        >{ isLoading ? 'wait..' : 'Create Account'}
                         </button>
                     </form>
                     <div className="text-white mt-6">

@@ -1,23 +1,3 @@
-import database from "../MongoConnect";
-import { User } from "../schemas/UserSchema";
-import bcryptjs from 'bcryptjs';
-
-const createUser = async (queryUser: any) => {
-    try{
-        if(!database.connect()) return false;
-        let { password } = queryUser;
-        const salt = await bcryptjs.genSaltSync();
-        password = await bcryptjs.hashSync(password, salt);
-
-        const dataUser = {...queryUser, password};
-        const user = new User(dataUser);
-        await user.save();
-        return user;
-    }catch(e){
-        throw new Error('Error in create user');
-    }
-}
-
 // Create: Model.create() ou new Model() seguido de model.save()
 // Read: Model.find(), Model.findOne(), Model.findById()
 // Update: Model.updateOne(), Model.updateMany(), Model.findOneAndUpdate(), Model.findByIdAndUpdate()

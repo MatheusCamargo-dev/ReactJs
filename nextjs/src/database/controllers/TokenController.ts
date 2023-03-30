@@ -5,7 +5,7 @@ import database from '../MongoConnect';
 
 const createToken = async (queryUser: any) => {
     const { email = '', password = '' } = queryUser;
-
+    
     if (!email || !password) {
       return {status: 0, message: 'invalid values' };
     }
