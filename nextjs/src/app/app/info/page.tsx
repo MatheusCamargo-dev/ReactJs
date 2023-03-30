@@ -1,8 +1,9 @@
 "use client"
-import { useState } from "react";
+import {setupAPIClient} from "@/services/api-client";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaClipboard } from 'react-icons/fa';
-
+import {  useRouter } from 'next/navigation';
 
 function TextForm(){
 
@@ -63,6 +64,18 @@ function TextForm(){
     )
 }
 export default function Info() {
+    const router = useRouter();
+    useEffect(() =>{
+       const token = async () => {
+            const api = await setupAPIClient();
+            const auth = await api('http://localhost:3000/api/token');
+            if (auth.data.status == 0) router.push('/');
+       }
+
+       token();
+    }, [])
+    
+    
     return (
       <div className="flex flex-col justify-center items-center mt-20 w-full bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full shadow-lg max-w-7xl ">

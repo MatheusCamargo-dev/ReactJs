@@ -9,7 +9,6 @@ type AuthenticatedComponentProps = {
 export default function AuthProvider(Component: React.FC<AuthenticatedComponentProps>) {
   async function AuthenticatedComponent(props: AuthenticatedComponentProps) {
     const auth = await api("http://localhost:3000/api/token", true);
-    console.log(auth)
     if (auth.status === 0) redirect("/");
 
     return <Component {...props} />;

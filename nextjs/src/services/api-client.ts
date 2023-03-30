@@ -3,7 +3,8 @@ import { parseCookies } from 'nookies';
 
 
 export const api = axios.create({
-    baseURL: 'http://localhost'
+    baseURL: 'http://localhost',
+    method: 'POST'
 })
 
 

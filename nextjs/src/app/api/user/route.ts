@@ -20,7 +20,10 @@ export async function POST(request: Request) {
 export async function GET(request: NextRequest) {
     try{ 
         const token = request.headers.get('authorization')?.split(" ")[1]
-        if(!token) return  NextResponse.json({ status: 0, message: "Token invalid"});
+        if(token == 'undefined' || token == undefined){
+            console.log('if?')
+            return NextResponse.json({ status: 0, message: "Token invalid"});
+        } 
 
         const res =  await tokenController.validToken(token);
         if(res.status == 1){

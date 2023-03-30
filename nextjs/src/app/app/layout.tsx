@@ -5,7 +5,8 @@ interface AppLayoutProps{
     children: ReactNode
 }
   
-const AppLayout = ({ children }: AppLayoutProps) => {
+// const AppLayout = ({ children }: AppLayoutProps) => {
+export default function AppLayout ({ children }: AppLayoutProps) {
     return(
         <div className="rounded flex flex-col h-screen bg-gray-100">
             <Header></Header>
@@ -14,4 +15,4 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     )
 }   
 
-export default AuthProvider(AppLayout)
+// export default AuthProvider(AppLayout)
