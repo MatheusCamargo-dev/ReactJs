@@ -1,20 +1,23 @@
-import axios from 'axios';
-import { parseCookies } from 'nookies';
+import { parseCookies } from "nookies";
 
-
-export const api = axios.create({
-    baseURL: 'http://localhost',
-    method: 'POST'
-})
-
-
-
-
-export async function setupAPIClient(ctx = undefined) {
+export async function apiClient(url: string, method: string = 'GET', data?: any, ctx = undefined) {
   const { token } = await parseCookies(ctx);
-  if(token){
-      api.defaults.headers['Authorization'] = `Bearer ${token}`;
-  }
 
-  return api;
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}` as const;
+  }
+  const options: RequestInit = {
+    method: method,
+    headers: headers,
+    mode: 'cors',
+    body: JSON.stringify({
+      date: data
+    })
+  };
+
+  return fetch(url, options);
 }

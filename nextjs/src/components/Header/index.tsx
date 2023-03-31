@@ -3,6 +3,9 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
+import { apiClient } from '@/services/api-client';
+import { useRouter } from 'next/navigation';
+import { destroyCookie } from 'nookies';
 
 const navigation = [
   { name: 'Home', href: '/', current: false },
@@ -13,8 +16,15 @@ const navigation = [
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-
+function currentPage(e: any){
+  console.log(e.target.getAttribute('data-key'))
+}
 export default function Header() {
+  const router = useRouter();
+  
+  async function signOut() {
+    if (destroyCookie({}, 'token')) router.push('/');
+  }
   return (
     <Disclosure as="nav" className="bg-green-800 z-500">
       {({ open }) => (
@@ -55,6 +65,7 @@ export default function Header() {
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
+                        onClick={currentPage}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
@@ -117,8 +128,8 @@ export default function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            onClick={signOut}
+                            className={classNames(active ? 'bg-gray-100' : '', 'cursor-pointer block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
                           </a>
@@ -142,6 +153,7 @@ export default function Header() {
                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
+                  data-key={item.name} 
                   aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}

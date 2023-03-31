@@ -1,4 +1,5 @@
 import { setCookie } from 'nookies';
+import { apiClient } from './api-client';
 
 type SignInRequestData = {
     email: string;
@@ -6,17 +7,7 @@ type SignInRequestData = {
 }
 export async function signInRequest(data: SignInRequestData) {
 
-    const jwt = await fetch('http://localhost:3000/api/auth/',
-    {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        body: JSON.stringify({
-            date: data
-        })
-    });
+    const jwt = await apiClient('http://localhost:3000/api/auth/','POST', data);
     const auth = await jwt.json();
     auth.status == 1 && setCookie(undefined, 'token', auth.token, {
                             maxAge: 60 * 80 * 24 //one day
@@ -27,17 +18,7 @@ export async function signInRequest(data: SignInRequestData) {
 
 export async function signUpRequest(data: SignInRequestData) {
 
-    const response = await fetch('http://localhost:3000/api/user/',
-    {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        body: JSON.stringify({
-            date: data
-        })
-    });
+    const response = await apiClient('http://localhost:3000/api/user/','POST', data);
     const userData = await response.json();
     return userData;
 

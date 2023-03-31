@@ -5,6 +5,7 @@ import {  useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Login from '@/components/Login';
 import Register from '@/components/Register';
+import { apiClient } from '@/services/api-client';
 
 
 export default function Home() {
@@ -74,6 +75,15 @@ export default function Home() {
       router.push('/');
     }
   }
+
+  useEffect(() => {
+    const token = async () => {
+      const data = await apiClient('http://localhost:3000/api/token', 'POST');
+      const auth = await data.json();
+      if (auth.status == 1) router.push('/app');
+    }
+    token();
+  }, [])
 
   return (
     <>

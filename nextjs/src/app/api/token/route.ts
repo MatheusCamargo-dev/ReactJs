@@ -14,3 +14,22 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(e);
     }
 }
+
+export async function DELETE(request: NextRequest) {
+    try{
+        console.log('delete route')
+        let res;
+        const response = NextResponse.next()
+        console.log(response.cookies.delete('token'));
+        if(request.cookies.delete('token')){
+            res = {status: 1, message: 'log out with success'};
+        }else{
+            res = {status: 0, message: `token doesn't exists`};
+        }
+        return NextResponse.json(res);
+    }
+    catch(e){
+        console.error(e);
+        return NextResponse.json(e);
+    }
+}

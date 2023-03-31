@@ -1,10 +1,10 @@
 "use client"
 
-import {setupAPIClient} from "@/services/api-client";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaClipboard } from 'react-icons/fa';
 import {  useRouter } from 'next/navigation';
+import { apiClient } from "@/services/api-client";
 
 function TextForm(){
 
@@ -14,16 +14,7 @@ function TextForm(){
     
     async function handleForm(data: any){
         setText('Loading...')
-        const response = await fetch('http://localhost:3000/api/ai/',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    date: data
-                })
-            });
+        const response = await apiClient('http://localhost:3000/api/ai/','POST', data);
         const textGPT = await response.json();
         setText(textGPT)
     }

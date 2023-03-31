@@ -1,9 +1,9 @@
 "use client"
 import { ReactNode, useEffect, useState } from "react";
 import {  useRouter } from 'next/navigation';
-import {setupAPIClient} from "@/services/api-client";
 import Header from "../../components/Header";
 import AppLoading from "../../components/AppLoading";
+import { apiClient } from "@/services/api-client";
 
 type AuthenticatedComponentProps = {
   child: ReactNode;
@@ -16,10 +16,10 @@ export default function AuthProvider(props: AuthenticatedComponentProps) {
   const [authStatus, setAuthStatus ] = useState(0);
   useEffect(() =>{
      const token = async () => {
-          const api = await setupAPIClient();
-          const auth = await api('http://localhost:3000/api/token');
-          if (auth.data.status == 0) router.push('/');
-          setAuthStatus(auth.data.status);
+          const data = await apiClient('http://localhost:3000/api/token', 'POST');
+          const auth = await data.json();
+          if (auth.status == 0) router.push('/');
+          setAuthStatus(auth.status);
      }
      token();
   }, []);
