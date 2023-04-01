@@ -1,27 +1,31 @@
 "use client";
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
-import { apiClient } from '@/services/api-client';
 import { useRouter } from 'next/navigation';
 import { destroyCookie } from 'nookies';
 
-const navigation = [
-  { name: 'Home', href: '/', current: false },
-  { name: 'App', href: '/app', current: false },
-  { name: 'Info', href: '/app/info', current: false },
-]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-function currentPage(e: any){
-  console.log(e.target.getAttribute('data-key'))
-}
+
 export default function Header() {
   const router = useRouter();
   
+  
+  const [navigation, setNavigation] = useState([
+    { name: 'Home', href: '/', current: false },
+    { name: 'App', href: '/app', current: false },
+    { name: 'Info', href: '/app/info', current: false },
+  ])
+
+  function currentPage(key: string){
+    const currentNav = navigation.map((item: any) => item.name == key ? {...item, current: true} : {...item, current: false})
+    setNavigation(currentNav);
+  }
+
   async function signOut() {
     if (destroyCookie({}, 'token')) router.push('/');
   }
@@ -57,7 +61,7 @@ export default function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation?.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
@@ -65,7 +69,8 @@ export default function Header() {
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
-                        onClick={currentPage}
+
+                        onClick={() => currentPage(item.name)}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
