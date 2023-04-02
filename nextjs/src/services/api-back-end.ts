@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export default async function api(url: string, post = false){
+export default async function apiServer(url: string, post = false){
   const cookieStore = cookies();
   const token = cookieStore.get('token')
   const headers = new Headers({
