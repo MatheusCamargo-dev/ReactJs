@@ -1,6 +1,6 @@
 "use client"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css'
+
 export default function Loading(){
     return (
         <div className="flex flex-col justify-center items-center mt-20 w-full bg-gray-100">

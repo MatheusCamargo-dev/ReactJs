@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FaClipboard } from 'react-icons/fa';
 import {  useRouter } from 'next/navigation';
 import { apiClient } from "@/services/api-client";
+import { toCopyText } from "@/functions/toCopyText";
 
 function TextForm(){
 
@@ -19,17 +20,7 @@ function TextForm(){
         setText(textGPT)
     }
 
-    const toCopy = () => {
-        let copyText = text;
-  
-          if(copyText !== ''){
-              navigator.clipboard.writeText(copyText);
-              alert("Copied text.")
-          }else{
-              alert("Please write text, you don't copy text null.")            
-          }
-      
-    }
+   
 
     return(
         <>
@@ -46,7 +37,7 @@ function TextForm(){
                         <p>{text}</p>
                     </div>
                     <div className="flex justify-end align-end mt-1">
-                        <button id="clipboard" className="group relative flex justify-center items-end text-end flex-row rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-slate-200 hover:bg-blue-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={toCopy}><FaClipboard /> copy</button>
+                        <button id="clipboard" className="group relative flex justify-center items-end text-end flex-row rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-slate-200 hover:bg-blue-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => toCopyText(text)}><FaClipboard /> copy</button>
                     </div>
                     </div>
                 </div>

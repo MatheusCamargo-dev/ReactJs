@@ -22,7 +22,7 @@ export default function AuthProvider(props: AuthenticatedComponentProps) {
           setAuthStatus(auth.status);
      }
      token();
-  }, []);
+  }, [authStatus]);
 
   return(
     <>

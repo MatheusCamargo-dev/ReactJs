@@ -1,9 +1,9 @@
 "use client";
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { destroyCookie } from 'nookies';
 
 
@@ -13,13 +13,19 @@ function classNames(...classes: string[]) {
 
 export default function Header() {
   const router = useRouter();
-  
-  
+  const pathname = usePathname();
   const [navigation, setNavigation] = useState([
     { name: 'Home', href: '/', current: false },
     { name: 'App', href: '/app', current: false },
     { name: 'Info', href: '/app/info', current: false },
   ])
+
+  useEffect(() => {
+    const href = pathname;
+    console.log(href)
+    const currentNav = navigation.map((item: any) => item.href == href ? {...item, current: true} : {...item, current: false})
+    setNavigation(currentNav);
+  },[])
 
   function currentPage(key: string){
     const currentNav = navigation.map((item: any) => item.name == key ? {...item, current: true} : {...item, current: false})
