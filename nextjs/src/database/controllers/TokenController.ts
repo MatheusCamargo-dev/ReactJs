@@ -33,7 +33,6 @@ const validToken = async (token: string) => {
     const userData = jwt.verify(token, process.env.TOKEN_SECRET as string);
     return { status: 1, userData };
   } catch (e) {
-    console.log(e);
     return { status: 0, message: e };
   }
 };

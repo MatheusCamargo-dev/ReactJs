@@ -3,17 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
 
 interface AuthState {
-  isAuthenticated: boolean;
+  isAuthenticated: number;
 }
 const initialState: AuthState = {
-  isAuthenticated: false
+  isAuthenticated: 0
 };
 
 export const authSlice = createSlice({
   name: 'Auth',
   initialState,
   reducers: {
-    setAuthenticated: (state: AuthState, action: PayloadAction<boolean>) => {
+    setAuthenticated: (state: AuthState, action: PayloadAction<number>) => {
       state.isAuthenticated = action.payload;
     }
   }

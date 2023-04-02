@@ -29,7 +29,7 @@ export default function Header() {
         : { ...item, current: false }
     );
     setNavigation(currentNav);
-  }, []);
+  }, [pathname]);
 
   function currentPage(key: string) {
     const currentNav = navigation.map((item: any) =>
@@ -172,25 +172,29 @@ export default function Header() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
-                  )}
-                  data-key={item.name}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
+            {({ close }) => (
+              <div className="space-y-1 px-2 pt-2 pb-3 flex flex-col">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'rounded-md px-3 py-2 text-sm font-medium ui-close:rotate-90 ui-close:transform'
+                    )}
+                    onClick={() => {
+                      currentPage(item.name);
+                      close();
+                    }}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </Disclosure.Panel>
         </>
       )}
