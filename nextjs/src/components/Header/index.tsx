@@ -1,14 +1,14 @@
-"use client";
-import { Fragment, useState, useEffect } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { Fragment, useState, useEffect } from 'react';
+
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { destroyCookie } from 'nookies';
 
-
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Header() {
@@ -17,18 +17,26 @@ export default function Header() {
   const [navigation, setNavigation] = useState([
     { name: 'Home', href: '/', current: false },
     { name: 'App', href: '/app', current: false },
-    { name: 'Info', href: '/app/info', current: false },
-  ])
+    { name: 'Info', href: '/app/info', current: false }
+  ]);
 
   useEffect(() => {
     const href = pathname;
-    console.log(href)
-    const currentNav = navigation.map((item: any) => item.href == href ? {...item, current: true} : {...item, current: false})
+    console.log(href);
+    const currentNav = navigation.map((item: any) =>
+      item.href == href
+        ? { ...item, current: true }
+        : { ...item, current: false }
+    );
     setNavigation(currentNav);
-  },[])
+  }, []);
 
-  function currentPage(key: string){
-    const currentNav = navigation.map((item: any) => item.name == key ? {...item, current: true} : {...item, current: false})
+  function currentPage(key: string) {
+    const currentNav = navigation.map((item: any) =>
+      item.name == key
+        ? { ...item, current: true }
+        : { ...item, current: false }
+    );
     setNavigation(currentNav);
   }
 
@@ -72,10 +80,11 @@ export default function Header() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
-
                         onClick={() => currentPage(item.name)}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -120,7 +129,10 @@ export default function Header() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
                           >
                             Your Profile
                           </a>
@@ -130,7 +142,10 @@ export default function Header() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
                           >
                             Settings
                           </a>
@@ -140,7 +155,10 @@ export default function Header() {
                         {({ active }) => (
                           <a
                             onClick={signOut}
-                            className={classNames(active ? 'bg-gray-100' : '', 'cursor-pointer block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'cursor-pointer block px-4 py-2 text-sm text-gray-700'
+                            )}
                           >
                             Sign out
                           </a>
@@ -161,10 +179,12 @@ export default function Header() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  data-key={item.name} 
+                  data-key={item.name}
                   aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}
@@ -175,5 +195,5 @@ export default function Header() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }

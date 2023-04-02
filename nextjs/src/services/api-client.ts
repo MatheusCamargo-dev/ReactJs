@@ -1,10 +1,11 @@
-import { parseCookies } from 'nookies';
+import { NextPageContext } from 'next';
 
+import { parseCookies } from 'nookies';
 export async function apiClient(
   url: string,
   method = 'GET',
-  data?: any,
-  ctx = undefined
+  data?: BodyInit | undefined,
+  ctx: Pick<NextPageContext, 'req'> | undefined = undefined
 ) {
   const { token } = await parseCookies(ctx);
 
@@ -18,11 +19,14 @@ export async function apiClient(
   const options: RequestInit = {
     method: method,
     headers: headers,
-    mode: 'cors',
-    body: JSON.stringify({
-      date: data
-    })
+    mode: 'cors'
   };
+
+  if (data) {
+    options.body = JSON.stringify({
+      date: data
+    });
+  }
 
   return fetch(url, options);
 }

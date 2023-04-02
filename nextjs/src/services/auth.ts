@@ -1,25 +1,23 @@
-import { setCookie } from 'nookies';
 import { apiClient } from './api-client';
 
-type SignInRequestData = {
-    email: string;
-    password: string;
-}
-export async function signInRequest(data: SignInRequestData) {
+import { setCookie } from 'nookies';
 
-    const jwt = await apiClient('http://localhost:3000/api/auth/','POST', data);
-    const auth = await jwt.json();
-    auth.status == 1 && setCookie(undefined, 'token', auth.token, {
-                            maxAge: 60 * 80 * 24 //one day
-                        })
-    return auth;
-
+export async function signInRequest(data: BodyInit) {
+  const jwt = await apiClient('http://localhost:3000/api/auth/', 'POST', data);
+  const auth = await jwt.json();
+  auth.status == 1 &&
+    setCookie(undefined, 'token', auth.token, {
+      maxAge: 60 * 80 * 24 //one day
+    });
+  return auth;
 }
 
-export async function signUpRequest(data: SignInRequestData) {
-
-    const response = await apiClient('http://localhost:3000/api/user/','POST', data);
-    const userData = await response.json();
-    return userData;
-
+export async function signUpRequest(data: BodyInit) {
+  const response = await apiClient(
+    'http://localhost:3000/api/user/',
+    'POST',
+    data
+  );
+  const userData = await response.json();
+  return userData;
 }
