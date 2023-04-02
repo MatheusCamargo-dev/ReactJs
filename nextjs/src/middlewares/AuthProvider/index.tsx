@@ -33,6 +33,7 @@ export default function AuthProvider(props: AuthenticatedComponentProps) {
   }, [isAuthenticated]);
 
   useEffect(() => {
+    console.log('test');
     if (authenticated == 0) {
       const token = async () => {
         const data = await apiClient('http://localhost:3000/api/token', 'POST');
@@ -45,7 +46,7 @@ export default function AuthProvider(props: AuthenticatedComponentProps) {
       };
       token();
     }
-  }, []);
+  }, [authenticated]);
 
   return (
     <>

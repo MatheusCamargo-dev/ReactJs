@@ -22,7 +22,6 @@ export default function Header() {
 
   useEffect(() => {
     const href = pathname;
-    console.log(href);
     const currentNav = navigation.map((item: any) =>
       item.href == href
         ? { ...item, current: true }

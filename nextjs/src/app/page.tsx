@@ -27,7 +27,10 @@ export default function Home() {
     const token = async () => {
       const data = await apiClient('http://localhost:3000/api/token', 'POST');
       const auth = await data.json();
-      if (auth.status == 1) push('/app');
+      if (auth.status == 1) {
+        push('/app');
+        return;
+      }
     };
     token();
   }, [push]);
