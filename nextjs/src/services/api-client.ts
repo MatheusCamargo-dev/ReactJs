@@ -1,10 +1,15 @@
-import { parseCookies } from "nookies";
+import { parseCookies } from 'nookies';
 
-export async function apiClient(url: string, method: string = 'GET', data?: any, ctx = undefined) {
+export async function apiClient(
+  url: string,
+  method = 'GET',
+  data?: any,
+  ctx = undefined
+) {
   const { token } = await parseCookies(ctx);
 
   const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   };
 
   if (token) {

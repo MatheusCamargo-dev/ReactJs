@@ -3,5 +3,9 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "fullname"
-  ]
+  ],
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }

@@ -11,16 +11,16 @@ import { useSignInUp } from '@/hooks/useSignSignUp';
 
 export default function Home() {
   const router = useRouter();
-  
-  const { 
-    typeForm, 
-    email, 
-    isLoading, 
-    changeForm, 
-    errorMessage, 
-    handleSignIn, 
-    handleSignUp, 
-    loginText 
+
+  const {
+    typeForm,
+    email,
+    isLoading,
+    changeForm,
+    errorMessage,
+    handleSignIn,
+    handleSignUp,
+    loginText
   } = useSignInUp();
 
   useEffect(() => {
@@ -40,6 +40,6 @@ export default function Home() {
         </div>
 
     </>
-    
+
   )
 }
