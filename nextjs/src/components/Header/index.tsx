@@ -43,7 +43,7 @@ export default function Header() {
     if (destroyCookie({}, 'token')) router.push('/');
   }
   return (
-    <Disclosure as="nav" className="bg-green-800 z-500">
+    <Disclosure as="nav" className="bg-dark-blue z-500">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
