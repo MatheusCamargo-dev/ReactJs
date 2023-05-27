@@ -1,15 +1,18 @@
+import { profileUrl } from '../utils/profileUrl'
+import Avatar from './Avatar'
+import Comment from './Comment'
 import styles from './Post.module.css'
 
 export default function Post() {
 
-  const profileUrl = 'https://github.com/MatheusCamargo-dev.png'
+
   return (
     <article className={styles.post}>
       <header>
           <div className={styles.author}>
-           <img className={styles.avatar} src={profileUrl} alt="" />
+           <Avatar src={profileUrl} alt="" />
             <div className={styles.authorInfo}>
-              <strong>Diego Fernandes</strong>
+              <strong>Matheus Camargo</strong>
               <span>Web developer</span>
             </div>
           </div>
@@ -41,6 +44,12 @@ export default function Post() {
 
         </footer>
       </form>
+      
+      <div className={styles.commentList}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
     </article>
   )
 }
