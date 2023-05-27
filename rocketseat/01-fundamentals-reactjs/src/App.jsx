@@ -13,8 +13,8 @@ function App() {
         <Sidebar />
         <main>
           <Post
-            author="Matheus Camargo"
-            content="Imagine a very cool post"
+            // author="Matheus Camargo"
+            // content="Imagine a very cool post"
             />
         </main>
       </div>

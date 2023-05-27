@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Styles from './styles/Styles.js';
@@ -20,7 +20,7 @@ import Header from './components/Header/index.js';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Styles/>
         <Header/>
         <Routes>
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='/react-hooks' element={<ReactHooks />} />
           <Route path='/react-redux' element={<ReactRedux />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>,
 )
