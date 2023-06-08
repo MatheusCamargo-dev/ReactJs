@@ -8,11 +8,38 @@ import {
   StartCountdownButton,
   TaskInput,
 } from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+const newCycleFormSchema = z.object({
+  task: z.string().min(1, 'Report a task'),
+  minutesAmount: z
+    .number()
+    .min(5, 'The cycle needs to be at least 5 minutes')
+    .max(60, 'The cycle needs to be a maximum of 60 minutes'),
+})
+
+type NewCycleFormData = z.infer<typeof newCycleFormSchema>
 
 export default function Home() {
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
+    resolver: zodResolver(newCycleFormSchema),
+    defaultValues: {
+      task: '',
+      minutesAmount: 5,
+    },
+  })
+
+  const task = watch('task')
+
+  function handleCreateNewCycle(data: NewCycleFormData) {
+    reset()
+    console.log(data)
+  }
   return (
     <HomeContainer>
-      <form action="">
+      <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
         <FormContainer>
           <label htmlFor="task">I will work on the</label>
           <TaskInput
@@ -20,6 +47,7 @@ export default function Home() {
             id="task"
             placeholder="Enter a name for your project"
             list="task-suggestion"
+            {...register('task')}
           />
           <datalist id="task-suggestion">
             <option value="Task 1" />
@@ -37,6 +65,7 @@ export default function Home() {
             min={5}
             max={60}
             defaultValue={5}
+            {...register('minutesAmount', { valueAsNumber: true })}
           />
 
           <span>minutes.</span>
@@ -49,7 +78,7 @@ export default function Home() {
           <span>0</span>
         </CountdownContainer>
 
-        <StartCountdownButton type="submit">
+        <StartCountdownButton type="submit" disabled={!task}>
           <Play size={24} />
           Start
         </StartCountdownButton>
