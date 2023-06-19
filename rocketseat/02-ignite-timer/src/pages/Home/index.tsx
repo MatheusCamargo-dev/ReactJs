@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useState } from 'react'
 
 const newCycleFormSchema = z.object({
   task: z.string().min(1, 'Report a task'),
@@ -22,7 +23,16 @@ const newCycleFormSchema = z.object({
 
 type NewCycleFormData = z.infer<typeof newCycleFormSchema>
 
+interface Cycle {
+  id: string
+  task: string
+  minutesAmount: number
+}
+
 export default function Home() {
+  const [cycles, setCycles] = useState<Cycle[]>([])
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+
   const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormSchema),
     defaultValues: {
@@ -34,9 +44,19 @@ export default function Home() {
   const task = watch('task')
 
   function handleCreateNewCycle(data: NewCycleFormData) {
+    const id = crypto.randomUUID()
+    const newCycle: Cycle = {
+      id,
+      task: data.task,
+      minutesAmount: data.minutesAmount,
+    }
+
+    setCycles((cycles) => [...cycles, newCycle])
+    setActiveCycleId(id)
     reset()
-    console.log(data)
   }
+
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
   return (
     <HomeContainer>
       <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
