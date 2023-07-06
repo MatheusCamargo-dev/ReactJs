@@ -10,6 +10,7 @@ export const SearchFormContainer = styled.form`
     border: 0;
     background: ${(props) => props.theme['gray-900']};
     padding: 1rem;
+    color: ${(props) => props.theme.white};
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
     }
