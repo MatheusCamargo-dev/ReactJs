@@ -1,5 +1,4 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { useContext } from 'react'
 import {
   CloseButton,
   Content,
@@ -12,7 +11,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { TransactionsContext } from '../../contexts/TransactionContext'
-
+import { useContextSelector } from 'use-context-selector'
 const newTransactionFormSchema = z.object({
   description: z.string(),
   price: z.number(),
@@ -22,7 +21,12 @@ const newTransactionFormSchema = z.object({
 
 export type NewTransactionFormInput = z.infer<typeof newTransactionFormSchema>
 export default function NewTransactionModal() {
-  const { createTransaction } = useContext(TransactionsContext)
+  const createTransaction = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return context.createTransaction
+    },
+  )
   const {
     register,
     handleSubmit,

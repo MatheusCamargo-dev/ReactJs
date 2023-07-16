@@ -15,6 +15,14 @@
       "category": "Food",
       "price": 40,
       "createdAt": "2023-07-11T00:00:41.870Z"
+    },
+    {
+      "description": "Testing",
+      "price": 2000,
+      "category": "test",
+      "type": "income",
+      "createdAt": "2023-07-16T14:20:58.885Z",
+      "id": 3
     }
   ]
 }
