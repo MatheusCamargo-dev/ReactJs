@@ -5,11 +5,8 @@ import Image from 'next/image'
 
 export default function Header() {
   return (
-    <Container>
-        <HeaderContainer>
-            <Image src={logoImg} alt="" />
-         </HeaderContainer>
-    </Container>
-   
+      <HeaderContainer>
+          <Image src={logoImg} alt="" />
+      </HeaderContainer>
   )
 }
