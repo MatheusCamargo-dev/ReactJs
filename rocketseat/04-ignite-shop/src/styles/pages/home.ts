@@ -1,14 +1,6 @@
 import { styled } from '..'
 
-export const HomeContainer = styled('main', {
-  display: 'flex',
-  width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
-  marginLeft: 'auto',
-  minHeight: 656,
-})
-
-export const Product = styled('a', {
+export const Product = {
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
   cursor: 'pointer',
@@ -57,4 +49,13 @@ export const Product = styled('a', {
       opacity: 1,
     },
   },
+}
+
+export const HomeContainer = styled('main', {
+  display: 'flex',
+  width: '100%',
+  maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
+  marginLeft: 'auto',
+  minHeight: 656,
+  a: Product,
 })

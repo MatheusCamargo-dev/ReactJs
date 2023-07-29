@@ -16,8 +16,6 @@ interface HomeProps {
   products: Product[]
 }
 export default function Home(props: HomeProps) {
-  console.log('ssr')
-  console.log(props)
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -28,14 +26,16 @@ export default function Home(props: HomeProps) {
     <HomeContainer ref={sliderRef} className="keen-slider">
       {props.products.map((product) => {
         return (
-          <Link key={product.id} href={`/product/${product.id}`}>
-            <Product className="keen-slider__slide">
-              <Image src={product.imageUrl} alt="" width={520} height={480} />
-              <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
-              </footer>
-            </Product>
+          <Link
+            key={product.id}
+            href={`/product/${product.id}`}
+            className="keen-slider__slide"
+          >
+            <Image src={product.imageUrl} alt="" width={520} height={480} />
+            <footer>
+              <strong>{product.name}</strong>
+              <span>{product.price}</span>
+            </footer>
           </Link>
         )
       })}
@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
       imageUrl: product.images[0],
       price: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
-        currency: 'BRL',
+        currency: 'USD',
       }).format(price.unit_amount / 100),
     }
   })
