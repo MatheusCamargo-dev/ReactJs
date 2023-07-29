@@ -1,12 +1,15 @@
 import React from 'react'
-import { Container, Header as HeaderContainer} from '../../styles/pages/app'
+import { Header as HeaderContainer } from '../../styles/pages/app'
 import logoImg from '../../assets/logo.svg'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Header() {
   return (
-      <HeaderContainer>
-          <Image src={logoImg} alt="" />
-      </HeaderContainer>
+    <HeaderContainer>
+      <Link href="/">
+        <Image src={logoImg} alt="" />
+      </Link>
+    </HeaderContainer>
   )
 }
