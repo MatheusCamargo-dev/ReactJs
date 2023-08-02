@@ -15,6 +15,7 @@ type Product = {
   name: string
   imageUrl: string
   price: string
+  defaultPriceId: string
   description: string
 }
 export default function Product({ product }: { product: Product }) {
@@ -22,6 +23,10 @@ export default function Product({ product }: { product: Product }) {
 
   if (isFallback) {
     return <p></p>
+  }
+
+  function handleBuyProduct() {
+    console.log(product.defaultPriceId)
   }
   return (
     <ProductContainer>
@@ -32,7 +37,7 @@ export default function Product({ product }: { product: Product }) {
         <h1>{product.name}</h1>
         <span>{product.price}</span>
         <p>{product.description}</p>
-        <button>Send</button>
+        <button onClick={handleBuyProduct}>Send</button>
       </ProductDetails>
     </ProductContainer>
   )
@@ -67,6 +72,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           currency: 'USD',
         }).format(price.unit_amount / 100),
         description: product.description,
+        defaultPriceId: price.id,
       },
     },
     revalidate: 60 * 60 * 1,
