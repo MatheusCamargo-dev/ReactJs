@@ -2,6 +2,7 @@ import {
   colors,
   fontSizes,
   fontWeights,
+  fonts,
   lineHeights,
   radii,
   space,
@@ -25,6 +26,7 @@ export const {
     lineHeights,
     radii,
     space,
+    fonts,
   },
   themeMap: {
     ...defaultThemeMap,
