@@ -12,6 +12,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@ignite-ui/eslint-config": "*",
+    "@ignite-ui/react": "*",
+    "@ignite-ui/tokens": "*",
+    "@ignite-ui/ts-config": "*",
     "@storybook/addon-essentials": "^7.2.1",
     "@storybook/addon-interactions": "^7.2.1",
     "@storybook/addon-links": "^7.2.1",
@@ -25,10 +29,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.2.1",
-    "vite": "^4.4.9",
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/eslint-config": "*"
-
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "polished": "^4.2.2"
   }
 }
