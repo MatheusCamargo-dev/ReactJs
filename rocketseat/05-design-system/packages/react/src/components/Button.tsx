@@ -1,25 +1,87 @@
 import { styled } from '../styles'
-import { ComponentProps } from 'react'
+import { ComponentProps, ElementType } from 'react'
 
 export const Button = styled('button', {
-  fontFamily: '$default',
-  backgroundColor: '$ignite500',
+  all: 'unset',
   borderRadius: '$sm',
-  border: 0,
-  fontWeight: 'bold',
-  color: 'White',
+  fontSize: '$sm',
+  fontWeight: '$medium',
+  fontFamily: '$default',
+  textAlign: 'center',
+  minWidth: 120,
+  boxSizing: 'border-box',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '$2',
+  cursor: 'pointer',
+  padding: '0 $4',
+
+  svg: {
+    width: '$4',
+    height: '$4',
+  },
+  '&:disabled': {
+    cursor: 'not-allowed',
+  },
+
   variants: {
-    size: {
-      small: {
-        fontSize: 12,
-        padding: '$2 $4',
+    variant: {
+      primary: {
+        color: 'white',
+        background: '$ignite500',
+
+        '&:not(:disabled):hover': {
+          background: '$ignite300',
+        },
+
+        '&:disabled': {
+          backgroundColor: '$gray200',
+        },
       },
-      big: {
-        padding: '$3 $6',
-        fontSize: 16,
+      secondary: {
+        color: '$ignite300',
+        border: '2px solid $ignite500',
+
+        '&:not(:disabled):hover': {
+          background: '$ignite500',
+          color: '$white',
+        },
+
+        '&:disabled': {
+          color: '$gray200',
+          borderColor: '$gray200',
+        },
+      },
+      tertiary: {
+        color: '$gray100',
+
+        '&:not(:disabled):hover': {
+          color: '$white',
+        },
+
+        '&:disabled': {
+          color: '$gray600',
+        },
+      },
+    },
+
+    size: {
+      sm: {
+        height: 38,
+      },
+      md: {
+        height: 46,
       },
     },
   },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+  },
 })
 
-export type ButtonProps = ComponentProps<typeof Button>
+export interface ButtonProps extends ComponentProps<typeof Button> {
+  as?: ElementType
+}

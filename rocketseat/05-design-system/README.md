@@ -3,9 +3,9 @@ Components
  - [x] Text
  - [x] Heading
  - [x] Box
- - [ ] Button
+ - [x] Button
+ - [x] Avatar
  - [ ] TextInput
  - [ ] TextArea
  - [ ] Checkbox
- - [ ] Avatar
  - [ ] Multistep
