@@ -8,4 +8,4 @@ Components
  - [x] TextInput
  - [x] TextArea
  - [x] Checkbox
- - [ ] Multistep
+ - [x] Multistep
