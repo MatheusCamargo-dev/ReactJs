@@ -8,6 +8,13 @@ export default {
     src: 'https://github.com/MatheusCamargo-dev.png',
     alt: 'Matheus Camargo',
   },
+  argTypes: {
+    src: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta<AvatarProps>
 
 export const Primary: StoryObj<AvatarProps> = {}
