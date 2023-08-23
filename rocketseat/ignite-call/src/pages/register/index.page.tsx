@@ -4,6 +4,8 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const registerFormSchema = z.object({
   username: z
@@ -24,12 +26,25 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
   })
 
-  async function handleRegister(data: RegisterFormData) {}
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query.username) {
+      setValue('username', String(router.query.username))
+    }
+  }, [router.query?.username, setValue])
+
+  async function handleRegister(data: RegisterFormData) {
+    const { username } = data
+
+    await router.push('/register?username=' + username)
+  }
   return (
     <Container>
       <Header>
@@ -49,6 +64,7 @@ export default function Register() {
             prefix="ignite.com/"
             placeholder="your-user"
             {...register('username')}
+            crossOrigin
           />
           {errors.username && (
             <FormError size="sm">{errors.username.message}</FormError>
@@ -56,7 +72,11 @@ export default function Register() {
         </label>
         <label htmlFor="">
           <Text size="sm">Fullname</Text>
-          <TextInput placeholder="your name" {...register('name')} />
+          <TextInput
+            placeholder="your name"
+            {...register('name')}
+            crossOrigin
+          />
           {errors.name && (
             <FormError size="sm">{errors.name.message}</FormError>
           )}
