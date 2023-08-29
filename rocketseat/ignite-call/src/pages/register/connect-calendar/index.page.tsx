@@ -28,7 +28,7 @@ export default function Register() {
             variant="secondary"
             size="sm"
             onClick={() => signIn('google')}
-            disabled={!!session}
+            // disabled={!!session}
           >
             {session ? 'Connected' : 'Connect '}
             {!session && <ArrowRight />}
