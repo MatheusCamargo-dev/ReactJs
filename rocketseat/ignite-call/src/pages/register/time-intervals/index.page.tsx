@@ -9,6 +9,7 @@ import {
 import { Container, Header } from '../styles'
 
 import {
+  FormError,
   IntervalBox,
   IntervalContainer,
   IntervalDay,
@@ -19,8 +20,26 @@ import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { getWeekDays } from '../../../utils/get-week-days'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-const timeIntervalSchema = z.object({})
+const timeIntervalSchema = z.object({
+  intervals: z
+    .array(
+      z.object({
+        weekDay: z.number().min(0).max(6),
+        enabled: z.boolean(),
+        startTime: z.string(),
+        endTime: z.string(),
+      }),
+    )
+    .length(7)
+    .transform((intervals) => intervals.filter((interval) => interval.enabled))
+    .refine((intervals) => intervals.length > 0, {
+      message: 'You need to select at least one day of the week.',
+    }),
+})
+
+type TimeIntervalsFormData = z.infer<typeof timeIntervalSchema>
 
 export default function TimeIntervals() {
   const {
@@ -30,6 +49,7 @@ export default function TimeIntervals() {
     watch,
     formState: { isSubmitting, errors },
   } = useForm({
+    resolver: zodResolver(timeIntervalSchema),
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
@@ -52,7 +72,9 @@ export default function TimeIntervals() {
 
   const intervals = watch('intervals')
 
-  async function handleSetTimeIntervals() {}
+  async function handleSetTimeIntervals(data: TimeIntervalsFormData) {
+    console.log(data)
+  }
 
   return (
     <Container>
@@ -107,7 +129,10 @@ export default function TimeIntervals() {
             )
           })}
         </IntervalContainer>
-        <Button>
+        {errors.intervals && (
+          <FormError size="sm">{errors.intervals.message}</FormError>
+        )}
+        <Button disabled={isSubmitting}>
           Next Step
           <ArrowRight />
         </Button>
