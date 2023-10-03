@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Calendar } from '../../../../../components/Calendar'
 import {
   Container,
@@ -10,6 +10,7 @@ import {
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { api } from '../../../../../lib/axios'
+import { useQuery } from '@tanstack/react-query'
 
 interface Availability {
   possibleTimes: number[]
@@ -17,7 +18,7 @@ interface Availability {
 }
 export function CalendarStep() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [availability, setAvailability] = useState<Availability | null>(null)
+  // const [availability, setAvailability] = useState<Availability | null>(null)
 
   const router = useRouter()
 
@@ -29,23 +30,25 @@ export function CalendarStep() {
     ? dayjs(selectedDate).format('DD[ of ]MMMM')
     : null
 
-  console.log(availability)
+  const selectedDateWithoutTime = selectedDate
+    ? dayjs(selectedDate).format('YYYY-MM-DD')
+    : null
 
-  useEffect(() => {
-    if (!selectedDate) {
-      return
-    }
-
-    api
-      .get(`/users/${username}/availability`, {
+  const { data: availability } = useQuery<Availability>(
+    ['availability', selectedDateWithoutTime],
+    async () => {
+      const response = await api.get(`/users/${username}/availability`, {
         params: {
-          date: dayjs(selectedDate).format('YYYY-MM-DD'),
+          date: selectedDateWithoutTime,
         },
       })
-      .then((response) => {
-        setAvailability(response.data)
-      })
-  }, [selectedDate, username])
+
+      return response.data
+    },
+    {
+      enabled: !!selectedDate,
+    },
+  )
 
   return (
     <Container isTimePickerOpen={isDateSelected}>
@@ -61,23 +64,13 @@ export function CalendarStep() {
             {availability?.possibleTimes?.map((hour) => {
               return (
                 <TimePickerItem
-                  disabled={availability.availableTimes.includes(hour)}
+                  disabled={!availability.availableTimes.includes(hour)}
                   key={hour}
                 >
                   {String(hour).padStart(2, '0')}:00h
                 </TimePickerItem>
               )
             })}
-            <TimePickerItem>09:00</TimePickerItem>
-            <TimePickerItem>10:00</TimePickerItem>
-            <TimePickerItem>11:00</TimePickerItem>
-            <TimePickerItem>12:00</TimePickerItem>
-            <TimePickerItem>13:00</TimePickerItem>
-            <TimePickerItem>14:00</TimePickerItem>
-            <TimePickerItem>15:00</TimePickerItem>
-            <TimePickerItem>16:00</TimePickerItem>
-            <TimePickerItem>17:00</TimePickerItem>
-            <TimePickerItem>18:00</TimePickerItem>
           </TimePickerList>
         </TimePicker>
       )}
