@@ -9,7 +9,7 @@ const playeSlice = createSlice({
           id: '1',
           title: 'Iniciando com React',
           lessons: [
-            { id: 'Jai8w6K_GnY', title: 'CSS Modules', duration: '13:45' },
+            { id: '2FJlbPqka3M', title: 'CSS Modules', duration: '13:45' },
             {
               id: 'w-DW4DhDfcw',
               title: 'Estilização do Post',
@@ -57,8 +57,16 @@ const playeSlice = createSlice({
         },
       ],
     },
+    currentModuleIndex: 0,
+    currentLessonIndex: 0,
   },
-  reducers: {},
+  reducers: {
+    play: (state, action) => {
+      state.currentModuleIndex = action.payload[0]
+      state.currentLessonIndex = action.payload[1]
+    },
+  },
 })
 
 export const player = playeSlice.reducer
+export const { play } = playeSlice.actions
