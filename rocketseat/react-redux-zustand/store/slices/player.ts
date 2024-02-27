@@ -9,7 +9,11 @@ const playeSlice = createSlice({
           id: '1',
           title: 'Iniciando com React',
           lessons: [
-            { id: '2FJlbPqka3M', title: 'CSS Modules', duration: '13:45' },
+            {
+              id: '2FJlbPqka3M',
+              title: 'One Piece is real',
+              duration: '13:45',
+            },
             {
               id: 'w-DW4DhDfcw',
               title: 'Estilização do Post',
