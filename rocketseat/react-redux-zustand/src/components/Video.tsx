@@ -1,7 +1,10 @@
 import ReactPlayer from 'react-player'
 import { useStoreSelector } from '../hooks'
+import { useDispatch } from 'react-redux'
+import { next } from '../../store/slices/player'
 
 export function Video() {
+  const dispatch = useDispatch()
   const video = useStoreSelector((state) => {
     const { currentLessonIndex, currentModuleIndex } = state.player
     const currentLesson =
@@ -11,6 +14,10 @@ export function Video() {
 
     return currentLesson
   })
+
+  function handlePlayNext() {
+    dispatch(next())
+  }
   return (
     <div className="aspect-video w-full bg-zinc-950">
       <ReactPlayer
@@ -18,6 +25,7 @@ export function Video() {
         height="100%"
         controls
         url={`https://www.youtube.com/watch?v=${video.id}`}
+        onEnded={handlePlayNext}
       />
     </div>
   )
