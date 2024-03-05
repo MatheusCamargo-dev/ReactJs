@@ -1,16 +1,7 @@
-import { useStoreSelector } from '../hooks'
+import { useCurrentLesson } from '../../store/slices/player'
 
 export function Header() {
-  const { currentModule, currentLesson } = useStoreSelector((state) => {
-    const { currentLessonIndex, currentModuleIndex } = state.player
-    const currentModule = state.player.course.modules[currentModuleIndex]
-    const currentLesson = currentModule.lessons[currentLessonIndex]
-
-    return {
-      currentModule,
-      currentLesson,
-    }
-  })
+  const { currentModule, currentLesson } = useCurrentLesson()
   return (
     <div className="flex flex-col gap-1">
       <h1 className="text-2xl font-bold">{currentLesson.title}</h1>

@@ -3,8 +3,17 @@ import { Header } from '../components/Header'
 import { Video } from '../components/Video'
 import { Module } from '../components/Module'
 import { useStoreSelector } from '../hooks'
+import { useCurrentLesson } from '../../store/slices/player'
+import { useEffect } from 'react'
 export function Player() {
   const modules = useStoreSelector((state) => state.player.course.modules)
+
+  const { currentLesson } = useCurrentLesson()
+
+  useEffect(() => {
+    document.title = `Watching ${currentLesson.title} `
+  }, [currentLesson])
+
   return (
     <div className="flex h-screen items-center justify-center bg-zinc-950 text-zinc-50">
       <div className="flex w-[1100px] flex-col gap-6">
