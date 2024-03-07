@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { useStoreSelector } from '../../src/hooks'
 
-const playeSlice = createSlice({
+export const playerSlice = createSlice({
   name: 'player',
   initialState: {
     course: {
@@ -90,8 +90,8 @@ const playeSlice = createSlice({
   },
 })
 
-export const player = playeSlice.reducer
-export const { play, next } = playeSlice.actions
+export const player = playerSlice.reducer
+export const { play, next } = playerSlice.actions
 
 export const useCurrentLesson = () => {
   return useStoreSelector((state) => {
